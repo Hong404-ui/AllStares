@@ -1,0 +1,57 @@
+/*animation In&Out*/
+.toRight,
+.toRightSmall,
+.toLeft,
+.toLeftSmall,
+.toBottom,
+.toBottomSmall,
+.toTop,
+.toTopSmall,
+.scaleIn{-webkit-transition: all .6s;opacity: 0;}
+.toRight{-webkit-transform: translate3d(-100%, 0, 0);}
+.toRightSmall{-webkit-transform: translate3d(-20%, 0, 0);}
+.toLeft{-webkit-transform: translate3d(100%, 0, 0);}
+.toLeftSmall{-webkit-transform: translate3d(20%, 0, 0);}
+.toBottom{-webkit-transform: translate3d(0, -100%, 0);}
+.toBottomSmall{-webkit-transform: translate3d(0, -30%, 0);}
+.toTop{-webkit-transform: translate3d(0, 100%, 0);}
+.toTopSmall{-webkit-transform: translate3d(0, 10%, 0);}
+.scaleIn{-webkit-transform: scale(1.4,1.4);}
+
+.part.show .toRight,
+.part.show .toRightSmall,
+.part.show .toLeft,
+.part.show .toLeftSmall,
+.part.show .toBottom,
+.part.show .toBottomSmall,
+.part.show .toTop,
+.part.show .toTopSmall{-webkit-transform: translate3d(0, 0 ,0);opacity: 1;}
+.part.show .scaleIn{-webkit-transform: scale(1, 1);opacity: 1;}
+
+/*transition delay*/
+.part.show .delay1{-webkit-transition-delay: .1s;}
+.part.show .delay2{-webkit-transition-delay: .2s;}
+.part.show .delay3{-webkit-transition-delay: .3s;}
+.part.show .delay4{-webkit-transition-delay: .4s;}
+.part.show .delay5{-webkit-transition-delay: .5s;}
+.part.show .delay6{-webkit-transition-delay: .6s;}
+.part.show .delay7{-webkit-transition-delay: .7s;}
+.part.show .delay8{-webkit-transition-delay: .8s;}
+.part.show .delay9{-webkit-transition-delay: .9s;}
+.part.show .delay10{-webkit-transition-delay: 1s;}
+
+
+.prev,.next{-webkit-animation:flprev 1.5s 0s linear infinite;}
+.next{-webkit-animation-name:flnext;animation-name:flnext;}
+@-webkit-keyframes flprev{0%{-webkit-transform:translateX(0);}50%{-webkit-transform:translateX(-4px);}100%{-webkit-transform:translateX(0);}}
+@-webkit-keyframes flnext{0%{-webkit-transform:translateX(0);}50%{-webkit-transform:translateX(4px);}100%{-webkit-transform:translateX(0);}}
+
+.gallery-thumbs-bg .swiper-slide-active img {
+    -webkit-animation: fadeInTop .6s .3s ease-out both;
+}
+@-webkit-keyframes fadeInTop {
+    0% {opacity: 0;-webkit-transform: translateY(0);}
+    100% {opacity: 1;-webkit-transform: translateY(0);}
+}
+.gallery-top-bg .swiper-button-next{-webkit-animation:next 1.5s 0s linear infinite;}
+@-webkit-keyframes next{0%{-webkit-transform:translateY(0);}50%{-webkit-transform:translateY(4px);}100%{-webkit-transform:translateY(0);}}
