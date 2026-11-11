@@ -5,39 +5,45 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="全明星觉醒官方网站，了解游戏资讯、角色与游戏特色。">
   <meta name="keywords" content="全明星觉醒,游戏资讯,角色展示,游戏特色">
-  <title>来一记帅气的K.O. - 全明星觉醒官方网站 - 腾讯游戏</title>
+  <title>全明星觉醒官方网站 - 腾讯游戏</title>
   <!-- 页面设计：项目设计稿 | 页面制作：前端还原 | 创建：2026-11-05 -->
   <link rel="stylesheet" href="../css/pc.css">
+  <link rel="stylesheet" href="../css/animation.css">
 </head>
 <body>
   <main class="page">
     <img class="canvas" src="../ossweb-img/pc/canvas.png" width="1920" height="5358" alt="">
     <img class="platform-layer" src="../ossweb-img/pc/footer-canvas.png" width="1920" height="5358" alt="">
 
-    <header class="hero" aria-label="全明星觉醒">
+    <header class="hero part" id="home" aria-label="全明星觉醒">
       <div class="site-nav">
         <img class="logo" src="../ossweb-img/pc/logo.png" width="143" height="77" alt="全明星觉醒">
         <nav aria-label="页面栏目">
-          <img src="../ossweb-img/pc/nav-home.png" width="34" height="44" alt="首页，当前栏目">
-          <img src="../ossweb-img/pc/nav-news.png" width="73" height="18" alt="游戏资讯">
-          <img src="../ossweb-img/pc/nav-character.png" width="71" height="18" alt="角色展示">
-          <img src="../ossweb-img/pc/nav-features.png" width="72" height="18" alt="游戏特色">
-          <img src="../ossweb-img/pc/nav-community.png" width="36" height="18" alt="社区">
+          <a class="is-active" href="#home" data-track="nav_home" aria-label="首页" aria-current="page"><img src="../ossweb-img/pc/nav-home-idle.png" width="34" height="18" alt="首页"></a>
+          <a href="#news" data-track="nav_news" aria-label="游戏资讯"><img src="../ossweb-img/pc/nav-news.png" width="73" height="18" alt="游戏资讯"></a>
+          <a href="#character" data-track="nav_character" aria-label="角色展示"><img src="../ossweb-img/pc/nav-character.png" width="71" height="18" alt="角色展示"></a>
+          <a href="#features" data-track="nav_features" aria-label="游戏特色"><img src="../ossweb-img/pc/nav-features.png" width="72" height="18" alt="游戏特色"></a>
+          <a href="#community" data-track="nav_community" aria-label="社区"><img src="../ossweb-img/pc/nav-community.png" width="36" height="18" alt="社区"></a>
+          <span class="nav-indicator" aria-hidden="true"></span>
         </nav>
-        <span class="welcome">欢迎您，请登录</span>
+        <span class="welcome">欢迎您，请<button class="login-label text-action" type="button" data-action="login" data-track="login_open">登录<img class="login-underline" src="../ossweb-img/pc/login-underline.png" width="37" height="1" alt=""></button></span>
       </div>
       <h1><img class="main-title" src="../ossweb-img/pc/main-title.png" width="862" height="147" alt="来一记帅气的K.O."></h1>
       <img class="subtitle" src="../ossweb-img/pc/subtitle.png" width="506" height="36" alt="街机大招策略卡牌手游">
       <img class="play" src="../ossweb-img/pc/play.png" width="53" height="54" alt="宣传片播放图标">
+      <button class="hit play-hit" type="button" aria-label="播放宣传片" data-action="video" data-track="video_open"></button>
       <img class="down-arrow" src="../ossweb-img/pc/down-arrow.png" width="43" height="48" alt="">
       <div class="download-options">
         <img src="../ossweb-img/pc/download-qr.png" width="293" height="67" alt="扫码下载">
         <img src="../ossweb-img/pc/download-android.png" width="293" height="67" alt="移动端下载">
         <img src="../ossweb-img/pc/download-pc.png" width="293" height="67" alt="PC模拟器下载">
       </div>
+      <button class="hit download-hit download-qr-hit" type="button" aria-label="扫码下载" data-action="download-qr" data-track="download_qr"></button>
+      <button class="hit download-hit download-android-hit" type="button" aria-label="安卓版下载" data-action="download-android" data-track="download_android"></button>
+      <button class="hit download-hit download-pc-hit" type="button" aria-label="PC模拟器下载" data-action="download-pc" data-track="download_pc"></button>
     </header>
 
-    <section class="downloads" aria-label="官网下载领福利">
+    <section class="downloads part" aria-label="官网下载领福利">
       <h2><img class="gift-title" src="../ossweb-img/pc/gift-title.png" width="577" height="83" alt="官网下载领福利"></h2>
       <ul class="gift-list">
         <li><img src="../ossweb-img/pc/gift-item.png" width="128" height="106" alt="游戏道具"><img src="../ossweb-img/pc/item-count.png" width="75" height="24" alt="道具x1"></li>
@@ -46,15 +52,26 @@
         <li><img src="../ossweb-img/pc/gift-item.png" width="128" height="106" alt="游戏道具"><img src="../ossweb-img/pc/item-count.png" width="75" height="24" alt="道具x1"></li>
       </ul>
       <img class="claim" src="../ossweb-img/pc/claim.png" width="240" height="78" alt="立即领取">
+      <button class="hit claim-hit" type="button" aria-label="立即领取" data-action="login" data-track="claim"></button>
     </section>
 
-    <section class="news" aria-label="游戏资讯">
-      <h2><img class="section-title" src="../ossweb-img/pc/news-title.png" width="421" height="105" alt="游戏资讯"></h2>
+    <section class="news part" id="news" aria-label="游戏资讯">
+      <h2><img class="section-title toTopSmall" src="../ossweb-img/pc/news-title.png" width="421" height="105" alt="游戏资讯"></h2>
       <div class="news-content">
         <img class="news-frame" src="../ossweb-img/pc/news-frame.png" width="1433" height="599" alt="">
         <div class="news-feature">
-          <img class="feature-poster" src="../ossweb-img/pc/news-poster.png" width="706" height="411" alt="不知火舞，格斗家集结">
-          <div class="feature-pagination" aria-hidden="true"><i></i><i></i><i></i><i class="current"></i><i></i></div>
+          <div class="news-carousel" aria-label="游戏资讯海报轮播，第3张，共4张">
+            <div class="news-carousel-track">
+              <img src="../ossweb-img/pc/news-poster.png" width="706" height="411" alt="" aria-hidden="true">
+              <img src="../ossweb-img/pc/news-poster.png" width="706" height="411" alt="">
+              <img src="../ossweb-img/pc/news-poster.png" width="706" height="411" alt="">
+              <img src="../ossweb-img/pc/news-poster.png" width="706" height="411" alt="不知火舞，格斗家集结">
+              <img src="../ossweb-img/pc/news-poster.png" width="706" height="411" alt="">
+              <img src="../ossweb-img/pc/news-poster.png" width="706" height="411" alt="" aria-hidden="true">
+            </div>
+          </div>
+          <img class="feature-pagination" src="../ossweb-img/pc/news-pagination.png" width="735" height="98" alt="">
+          <div class="news-pages" aria-label="资讯海报分页"><button type="button" aria-label="第1张资讯海报" data-page="0" data-track="news_page_1"></button><button type="button" aria-label="第2张资讯海报" data-page="1" data-track="news_page_2"></button><button type="button" class="is-active" aria-label="第3张资讯海报" aria-current="true" data-page="2" data-track="news_page_3"></button><button type="button" aria-label="第4张资讯海报" data-page="3" data-track="news_page_4"></button><span class="news-active-bar" aria-hidden="true"></span></div>
         </div>
         <div class="news-panel">
           <div class="news-tabs" aria-label="资讯分类">
@@ -64,25 +81,30 @@
             <img src="../ossweb-img/pc/tab-event.png" width="101" height="36" alt="活动">
             <img src="../ossweb-img/pc/tab-guide.png" width="101" height="36" alt="攻略">
           </div>
+          <div class="news-tab-actions" role="tablist" aria-label="资讯分类"><button class="is-active" type="button" role="tab" aria-selected="true" aria-label="最新" data-tab="latest" data-track="news_tab_latest"></button><button type="button" role="tab" aria-selected="false" aria-label="新闻" data-tab="news" data-track="news_tab_news"></button><button type="button" role="tab" aria-selected="false" aria-label="公告" data-tab="notice" data-track="news_tab_notice"></button><button type="button" role="tab" aria-selected="false" aria-label="活动" data-tab="event" data-track="news_tab_event"></button><button type="button" role="tab" aria-selected="false" aria-label="攻略" data-tab="guide" data-track="news_tab_guide"></button></div>
           <ul class="news-list">
-            <li><img class="row-bg" src="../ossweb-img/pc/news-row.png" width="564" height="74" alt=""><img class="category" src="../ossweb-img/pc/category.png" width="38" height="18" alt="分类"><img class="news-text" src="../ossweb-img/pc/news-text.png" width="232" height="18" alt="冠军领好礼"><img class="date" src="../ossweb-img/pc/news-date.png" width="65" height="12" alt="2025/4/02"></li>
-            <li><img class="row-bg" src="../ossweb-img/pc/news-row.png" width="564" height="74" alt=""><img class="category" src="../ossweb-img/pc/category.png" width="38" height="18" alt="分类"><img class="news-text" src="../ossweb-img/pc/news-text.png" width="232" height="18" alt="冠军领好礼"><img class="date" src="../ossweb-img/pc/news-date.png" width="65" height="12" alt="2025/4/02"></li>
-            <li><img class="row-bg" src="../ossweb-img/pc/news-row.png" width="564" height="74" alt=""><img class="category" src="../ossweb-img/pc/category.png" width="38" height="18" alt="分类"><img class="news-text" src="../ossweb-img/pc/news-text.png" width="232" height="18" alt="冠军领好礼"><img class="date" src="../ossweb-img/pc/news-date.png" width="65" height="12" alt="2025/4/02"></li>
-            <li><img class="row-bg" src="../ossweb-img/pc/news-row.png" width="564" height="74" alt=""><img class="category" src="../ossweb-img/pc/category.png" width="38" height="18" alt="分类"><img class="news-text" src="../ossweb-img/pc/news-text.png" width="232" height="18" alt="冠军领好礼"><img class="date" src="../ossweb-img/pc/news-date.png" width="65" height="12" alt="2025/4/02"></li>
-            <li><img class="row-bg" src="../ossweb-img/pc/news-row.png" width="564" height="74" alt=""><img class="category" src="../ossweb-img/pc/category.png" width="38" height="18" alt="分类"><img class="news-text" src="../ossweb-img/pc/news-text.png" width="232" height="18" alt="冠军领好礼"><img class="date" src="../ossweb-img/pc/news-date.png" width="65" height="12" alt="2025/4/02"></li>
+            <li><img class="row-bg" src="../ossweb-img/pc/news-row.png" width="564" height="74" alt=""><img class="category" src="../ossweb-img/pc/category.png" width="38" height="18" alt="分类"><img class="news-text" src="../ossweb-img/pc/news-text.png" width="232" height="18" alt="冠军领好礼"><img class="date" src="../ossweb-img/pc/news-date.png" width="65" height="12" alt="2025/4/02"><button class="row-hit" type="button" aria-label="查看冠军领好礼资讯1" data-action="news-item" data-track="news_item_1"></button></li>
+            <li><img class="row-bg" src="../ossweb-img/pc/news-row.png" width="564" height="74" alt=""><img class="category" src="../ossweb-img/pc/category.png" width="38" height="18" alt="分类"><img class="news-text" src="../ossweb-img/pc/news-text.png" width="232" height="18" alt="冠军领好礼"><img class="date" src="../ossweb-img/pc/news-date.png" width="65" height="12" alt="2025/4/02"><button class="row-hit" type="button" aria-label="查看冠军领好礼资讯2" data-action="news-item" data-track="news_item_2"></button></li>
+            <li><img class="row-bg" src="../ossweb-img/pc/news-row.png" width="564" height="74" alt=""><img class="category" src="../ossweb-img/pc/category.png" width="38" height="18" alt="分类"><img class="news-text" src="../ossweb-img/pc/news-text.png" width="232" height="18" alt="冠军领好礼"><img class="date" src="../ossweb-img/pc/news-date.png" width="65" height="12" alt="2025/4/02"><button class="row-hit" type="button" aria-label="查看冠军领好礼资讯3" data-action="news-item" data-track="news_item_3"></button></li>
+            <li><img class="row-bg" src="../ossweb-img/pc/news-row.png" width="564" height="74" alt=""><img class="category" src="../ossweb-img/pc/category.png" width="38" height="18" alt="分类"><img class="news-text" src="../ossweb-img/pc/news-text.png" width="232" height="18" alt="冠军领好礼"><img class="date" src="../ossweb-img/pc/news-date.png" width="65" height="12" alt="2025/4/02"><button class="row-hit" type="button" aria-label="查看冠军领好礼资讯4" data-action="news-item" data-track="news_item_4"></button></li>
+            <li><img class="row-bg" src="../ossweb-img/pc/news-row.png" width="564" height="74" alt=""><img class="category" src="../ossweb-img/pc/category.png" width="38" height="18" alt="分类"><img class="news-text" src="../ossweb-img/pc/news-text.png" width="232" height="18" alt="冠军领好礼"><img class="date" src="../ossweb-img/pc/news-date.png" width="65" height="12" alt="2025/4/02"><button class="row-hit" type="button" aria-label="查看冠军领好礼资讯5" data-action="news-item" data-track="news_item_5"></button></li>
           </ul>
+          <p class="news-empty" hidden>暂无相关资讯</p>
           <img class="news-more" src="../ossweb-img/pc/news-more.png" width="138" height="25" alt="更多资讯">
+          <button class="hit news-more-hit" type="button" aria-label="更多资讯" data-action="more-news" data-track="news_more"></button>
         </div>
       </div>
       <img class="news-down" src="../ossweb-img/pc/down-arrow.png" width="43" height="48" alt="">
     </section>
 
-    <section class="character" aria-label="角色展示">
-      <h2><img class="section-title" src="../ossweb-img/pc/character-title.png" width="421" height="105" alt="角色展示"></h2>
+    <section class="character part" id="character" aria-label="角色展示">
+      <h2><img class="section-title toTopSmall" src="../ossweb-img/pc/character-title.png" width="421" height="105" alt="角色展示"></h2>
       <img class="character-frame" src="../ossweb-img/pc/character-frame.png" width="1178" height="608" alt="">
       <img class="character-art" src="../ossweb-img/pc/character-art.png" width="1094" height="949" alt="橘右京角色立绘">
       <img class="effect" src="../ossweb-img/pc/effect.png" width="59" height="218" alt="查看战斗特效">
       <img class="voice" src="../ossweb-img/pc/voice.png" width="59" height="218" alt="聆听角色语言">
+      <button class="hit effect-hit" type="button" aria-label="查看战斗特效" data-action="effect" data-track="character_effect"></button>
+      <button class="hit voice-hit" type="button" aria-label="聆听角色语言" data-action="voice" data-track="character_voice"></button>
       <div class="character-info">
         <img class="character-card" src="../ossweb-img/pc/character-card.png" width="637" height="220" alt="橘右京头像">
         <img class="nameplate" src="../ossweb-img/pc/nameplate.png" width="200" height="105" alt="橘右京">
@@ -106,12 +128,18 @@
         <img src="../ossweb-img/pc/portrait-4.png" width="157" height="157" alt="角色头像">
         <img class="picker-arrow" src="../ossweb-img/pc/arrow-right.png" width="46" height="52" alt="下一位角色">
         <img class="coming" src="../ossweb-img/pc/coming.png" width="150" height="51" alt="敬请期待">
+        <button class="hit picker-hit picker-prev" type="button" aria-label="上一位角色" data-action="character-prev" data-track="character_prev"></button>
+        <button class="hit picker-hit picker-one" type="button" aria-label="查看角色1" data-action="character-other" data-track="character_portrait_1"></button>
+        <button class="hit picker-hit picker-two" type="button" aria-label="橘右京，当前角色" aria-current="true" data-action="character-current" data-track="character_portrait_2"></button>
+        <button class="hit picker-hit picker-three" type="button" aria-label="查看角色3" data-action="character-other" data-track="character_portrait_3"></button>
+        <button class="hit picker-hit picker-four" type="button" aria-label="查看角色4" data-action="character-other" data-track="character_portrait_4"></button>
+        <button class="hit picker-hit picker-next" type="button" aria-label="下一位角色" data-action="character-next" data-track="character_next"></button>
       </div>
     </section>
 
-    <section class="features" aria-label="游戏特色">
+    <section class="features part" id="features" aria-label="游戏特色">
       <img class="feature-decor" src="../ossweb-img/pc/feature-decor.png" width="1920" height="1191" alt="">
-      <h2><img class="section-title" src="../ossweb-img/pc/feature-title.png" width="421" height="105" alt="游戏特色"></h2>
+      <h2><img class="section-title toTopSmall" src="../ossweb-img/pc/feature-title.png" width="421" height="105" alt="游戏特色"></h2>
       <div class="feature-gallery">
         <img class="side left" src="../ossweb-img/pc/feature-left.png" width="837" height="480" alt="街机手感，重燃记忆">
         <img class="side right" src="../ossweb-img/pc/feature-right.png" width="838" height="480" alt="最初热爱，不知火舞参上">
@@ -119,12 +147,15 @@
         <img class="gallery-left" src="../ossweb-img/pc/feature-arrow-left.png" width="59" height="81" alt="上一张特色图">
         <img class="gallery-right" src="../ossweb-img/pc/feature-arrow-right.png" width="59" height="81" alt="下一张特色图">
       </div>
-      <div class="feature-dots" aria-hidden="true"><img src="../ossweb-img/pc/feature-dot.png" width="26" height="23" alt=""><img src="../ossweb-img/pc/feature-dot-active.png" width="32" height="28" alt=""><img src="../ossweb-img/pc/feature-dot.png" width="26" height="23" alt=""><img src="../ossweb-img/pc/feature-dot.png" width="26" height="23" alt=""><img src="../ossweb-img/pc/feature-dot.png" width="26" height="23" alt=""></div>
+      <button class="hit gallery-prev-hit" type="button" aria-label="上一张游戏特色" data-feature-step="-1" data-track="feature_prev"></button>
+      <button class="hit gallery-next-hit" type="button" aria-label="下一张游戏特色" data-feature-step="1" data-track="feature_next"></button>
+      <div class="feature-dots" aria-hidden="true"><img src="../ossweb-img/pc/feature-dot.png" width="26" height="23" alt=""><img class="is-active" src="../ossweb-img/pc/feature-dot-active.png" width="32" height="28" alt=""><img src="../ossweb-img/pc/feature-dot.png" width="26" height="23" alt=""><img src="../ossweb-img/pc/feature-dot.png" width="26" height="23" alt=""><img src="../ossweb-img/pc/feature-dot.png" width="26" height="23" alt=""></div>
+      <div class="feature-dot-actions" aria-label="游戏特色分页"><button type="button" aria-label="第1张游戏特色" data-feature="0" data-track="feature_dot_1"></button><button type="button" class="is-active" aria-label="第2张游戏特色" aria-current="true" data-feature="1" data-track="feature_dot_2"></button><button type="button" aria-label="第3张游戏特色" data-feature="2" data-track="feature_dot_3"></button><button type="button" aria-label="第4张游戏特色" data-feature="3" data-track="feature_dot_4"></button><button type="button" aria-label="第5张游戏特色" data-feature="4" data-track="feature_dot_5"></button></div>
     </section>
 
-    <section class="community" aria-label="社区">
+    <section class="community part" id="community" aria-label="社区">
       <img class="community-bg" src="../ossweb-img/pc/community-bg.png" width="1920" height="848" alt="">
-      <h2><img class="section-title" src="../ossweb-img/pc/community-title.png" width="339" height="109" alt="社区"></h2>
+      <h2><img class="section-title toTopSmall" src="../ossweb-img/pc/community-title.png" width="339" height="109" alt="社区"></h2>
       <ul class="social-list">
         <li><img src="../ossweb-img/pc/social-wechat.png" width="168" height="216" alt="微信公众号"></li>
         <li><img src="../ossweb-img/pc/social-game.png" width="168" height="216" alt="微信游戏圈"></li>
@@ -137,18 +168,53 @@
         <li><img src="../ossweb-img/pc/social-bilibili.png" width="168" height="216" alt="哔哩哔哩"></li>
         <li><img src="../ossweb-img/pc/social-weibo.png" width="168" height="216" alt="微博"></li>
       </ul>
+      <div class="social-actions"><button type="button" aria-label="微信公众号" data-action="community" data-track="community_wechat"></button><button type="button" aria-label="微信游戏圈" data-action="community" data-track="community_game"></button><button type="button" aria-label="官方微信群" data-action="community" data-track="community_group"></button><button type="button" aria-label="官方QQ群" data-action="community" data-track="community_qq"></button><button type="button" aria-label="手Q频道" data-action="community" data-track="community_channel"></button><button type="button" aria-label="TapTap" data-action="community" data-track="community_taptap"></button><button type="button" aria-label="微信视频号" data-action="community" data-track="community_video"></button><button type="button" aria-label="抖音" data-action="community" data-track="community_douyin"></button><button type="button" aria-label="哔哩哔哩" data-action="community" data-track="community_bilibili"></button><button type="button" aria-label="微博" data-action="community" data-track="community_weibo"></button></div>
     </section>
 
     <footer class="site-footer">
       <div class="footer-logo">Tencent <small>腾讯互动娱乐</small></div>
       <div class="footer-copy">
-        <p>腾讯互动娱乐 | 服务条款 | 隐私保护指引 | 儿童隐私保护指引 | 腾讯游戏招聘 | 腾讯游戏客服 | 游戏列表 | 广告服务及商务合作</p>
         <p>SNK版权所有 ©SNK CORPORATION ALL RIGHTS RESERVED.</p>
         <p>COPYRIGHT © 1998 - 2025 TENCENT. ALL RIGHTS RESERVED.</p>
         <p>本网络游戏适合18+岁的用户使用；为了您的健康，请合理控制游戏时间。</p>
       </div>
+      <nav class="footer-links-fallback" aria-label="腾讯游戏页脚链接">
+        <a href="https://ieg.tencent.com/2023/index.html" target="_blank" rel="noopener noreferrer" data-track="footer_tencent">腾讯互动娱乐</a>
+        <a href="https://game.qq.com/contract.shtml" target="_blank" rel="noopener noreferrer" data-track="footer_terms">服务条款</a>
+        <a href="https://game.qq.com/privacy_guide.shtml?ADTAG=gamepcbottom" target="_blank" rel="noopener noreferrer" data-track="footer_privacy">隐私保护指引</a>
+        <a href="https://game.qq.com/privacy_guide_children.shtml?ADTAG=gamepcbottom" target="_blank" rel="noopener noreferrer" data-track="footer_children_privacy">儿童隐私保护指引</a>
+        <a href="https://careers.tencent.com/" target="_blank" rel="noopener noreferrer" data-track="footer_careers">腾讯游戏招聘</a>
+        <a href="https://kf.qq.com/" target="_blank" rel="noopener noreferrer" data-track="footer_support">腾讯游戏客服</a>
+        <a href="https://game.qq.com/web201910/introduce.html?ADTAG=gamepcbottom" target="_blank" rel="noopener noreferrer" data-track="footer_games">游戏列表</a>
+        <a href="https://www.tencent.com/zh-cn/partnership.html" target="_blank" rel="noopener noreferrer" data-track="footer_partnership">广告服务及商务合作</a>
+      </nav>
+      <div class="footer-public-links" aria-label="资质信息">
+        <a href="https://h5.news.qq.com/static/business-license.html" target="_blank" rel="noopener noreferrer" data-track="footer_business_license" aria-label="营业执照"></a>
+        <a href="https://www.qq.com/culture.shtml" target="_blank" rel="noopener noreferrer" data-track="footer_culture_license" aria-label="粤网文[2023]2882-203号"></a>
+        <a href="https://game.qq.com/culture3.html" target="_blank" rel="noopener noreferrer" data-track="footer_publishing_license" aria-label="（署）网出证（粤）字第054号"></a>
+      </div>
+      <script id="afooter" src="https://game.gtimg.cn/images/js/2018foot/foot.js"></script>
     </footer>
   </main>
-  <script id="screenFix" data-size="1920" src="../js/remFix.js"></script>
+  <p class="site-message" id="site-message" role="status" aria-live="polite" hidden></p>
+  <div class="overlay" id="overlay" hidden>
+    <div class="dialog login-dialog" id="login-dialog" role="dialog" aria-modal="true" aria-label="请选择登录方式" hidden>
+      <img class="login-panel" src="../ossweb-img/login-panel.png" width="644" height="555" alt="">
+      <img class="login-title" src="../ossweb-img/login-title.png" width="421" height="105" alt="请先登录">
+      <button class="dialog-close login-close" type="button" aria-label="关闭登录弹窗" data-track="login_close"><img src="../ossweb-img/login-close.png" width="62" height="49" alt=""></button>
+      <button class="login-choice login-wechat" type="button" data-provider="wechat" data-track="login_wechat" aria-label="微信登录"><img src="../ossweb-img/login-wechat.png" width="151" height="193" alt="微信登录"></button>
+      <button class="login-choice login-qq" type="button" data-provider="qq" data-track="login_qq" aria-label="QQ登录"><img src="../ossweb-img/login-qq.png" width="151" height="193" alt="QQ登录"></button>
+      <p class="login-status" id="login-status" role="status" aria-live="polite"></p>
+    </div>
+    <div class="dialog video-dialog" id="video-dialog" role="dialog" aria-modal="true" aria-label="全明星觉醒宣传视频" hidden>
+      <button class="dialog-close video-close" type="button" aria-label="关闭宣传视频" data-track="video_close">×</button>
+      <div class="super-player" id="super-player"></div>
+      <p class="video-status" id="video-status" role="status" aria-live="polite">正在加载视频...</p>
+    </div>
+  </div>
+  <script id="screenFix" data-size="1920" data-min-width="960" src="../js/remFix.js"></script>
+  <script src="https://ossweb-img.qq.com/images/js/eas/eas.js"></script>
+  <script async id="superplayer-sdk" src="https://vm.gtimg.cn/thumbplayer/superplayer/superplayer.js"></script>
+  <script src="../js/pc.js"></script>
 </body>
 </html>
