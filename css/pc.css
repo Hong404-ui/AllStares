@@ -1,21 +1,47 @@
 @import "reset.css";
 
-html, body { min-width: 960px; background: #070a24; }
+html, body { background: #070a24; }
 html { overflow-x: auto; }
 body { height: auto; min-height: 100%; color: #fff; font-family: "Microsoft YaHei", Arial, sans-serif; }
-.page { position: relative; width: 19.2rem; height: 53.58rem; margin: 0 auto; overflow: hidden; }
+body::after { content: ""; display: block; width: 19.2rem; height: max(0px, calc(100vh - 11.78rem)); margin: 0 auto; background: #000; }
+.page {
+  --home-top: .38rem;
+  --hero-scale: 1;
+  --hero-inverse-scale: 1;
+  --scale-info: 1;
+  --scale-character: 1;
+  --scale-features: 1;
+  --scale-community: 1;
+  --fit-layout: 0;
+  --scroll-layout: 0;
+  --info-news-offset: 1.7rem;
+  position: relative;
+  width: 19.2rem;
+  height: calc(var(--home-top) + 500vh + 2.18rem);
+  margin: 0 auto;
+  overflow: clip;
+}
 .page img { display: block; }
-.canvas, .platform-layer { position: absolute; left: 0; top: 0; width: 19.2rem; height: 53.58rem; }
-.platform-layer { pointer-events: none; }
+.canvas-slice, .platform-slice { position: absolute; left: 0; width: 19.2rem; pointer-events: none; background-size: 19.2rem 53.58rem; background-repeat: no-repeat; }
+.canvas-slice { background-image: url("../ossweb-img/pc/canvas.png"); }
+.platform-slice { background-image: url("../ossweb-img/pc/footer-canvas.png"); }
+.canvas-hero { top: 0; height: 8.4rem; background-position: 0 0; transform: scaleY(var(--hero-scale)); transform-origin: top left; }
+.canvas-info { top: calc(var(--home-top) + 100vh); height: 10.2rem; background-position: 0 -8.4rem; transform: scaleY(var(--scale-info)); transform-origin: top left; }
+.canvas-character { top: calc(var(--home-top) + 200vh); height: 11.3rem; background-position: 0 -18.6rem; transform: scaleY(var(--scale-character)); transform-origin: top left; }
+.canvas-features { top: calc(var(--home-top) + 300vh); height: 11.9rem; background-position: 0 -29.96rem; transform: scaleY(var(--scale-features)); transform-origin: top left; }
+.canvas-community { top: calc(var(--home-top) + 400vh); height: 9.6rem; background-position: 0 -41.8rem; transform: scaleY(var(--scale-community)); transform-origin: top left; }
+.canvas-footer { top: calc(var(--home-top) + 500vh); height: 2.18rem; background-position: 0 -51.4rem; }
+.platform-top { top: 0; height: .38rem; background-position: 0 0; }
+.platform-footer { top: calc(var(--home-top) + 500vh); height: 2.18rem; background-position: 0 -51.4rem; }
 .hero, .downloads, .news, .character, .features, .community, .site-footer { position: absolute; left: 0; width: 19.2rem; }
 .section-title { width: 4.21rem; height: 1.05rem; }
 
-.hero { top: 0; height: 8.4rem; }
-.site-nav { position: absolute; left: 0; top: .38rem; width: 19.2rem; height: .95rem; }
+.hero { top: 0; height: 8.4rem; transform: scaleY(var(--hero-scale)); transform-origin: top left; }
+.site-nav { position: absolute; left: 0; top: .38rem; width: 19.2rem; height: .95rem; transform: scaleY(var(--hero-inverse-scale)); transform-origin: top left; }
 .site-nav .logo { position: absolute; left: 1.21rem; top: -.06rem; width: 1.43rem; height: .77rem; }
 .site-nav nav { position: absolute; left: 3.63rem; top: 0; display: flex; align-items: center; gap: .65rem; height: .69rem; }
 .welcome { position: absolute; right: 1.04rem; top: .21rem; color: #fff; font-size: .16rem; font-weight: 700; line-height: .24rem; }
-.login-label { position: relative; }
+.login-label { position: relative; margin-left: .08rem; }
 .login-underline { position: absolute; right: 0; bottom: -.01rem; width: .37rem; height: .01rem; }
 .hero h1 { position: absolute; left: 5.28rem; top: 4.79rem; width: 8.62rem; height: 1.47rem; }
 .main-title { width: 8.62rem; height: 1.47rem; }
@@ -25,7 +51,7 @@ body { height: auto; min-height: 100%; color: #fff; font-family: "Microsoft YaHe
 .download-options { position: absolute; left: 4.27rem; top: 7.26rem; display: flex; gap: 1.13rem; }
 .download-options img { width: 2.93rem; height: .67rem; }
 
-.downloads { top: 8.4rem; height: 1.7rem; }
+.downloads { top: calc(var(--home-top) + 100vh); height: 1.7rem; transform: scaleY(var(--scale-info)); transform-origin: top left; }
 .gift-title { position: absolute; left: .79rem; top: .41rem; width: 5.77rem; height: .83rem; }
 .gift-list { position: absolute; left: 0; top: 0; width: 19.2rem; height: 1.7rem; }
 .gift-list li { position: absolute; top: .17rem; width: 1.28rem; height: 1.4rem; }
@@ -37,7 +63,7 @@ body { height: auto; min-height: 100%; color: #fff; font-family: "Microsoft YaHe
 .gift-list li img:last-child { position: absolute; left: .3rem; top: 1.12rem; width: .75rem; height: .24rem; }
 .claim { position: absolute; left: 15.62rem; top: .45rem; width: 2.4rem; height: .78rem; }
 
-.news { top: 10.1rem; height: 8.5rem; }
+.news { top: calc(var(--home-top) + 100vh + var(--info-news-offset)); height: 8.5rem; transform: scaleY(var(--scale-info)); transform-origin: top left; }
 .news h2, .character h2, .features h2, .community h2 { position: absolute; left: 7.52rem; top: .33rem; width: 4.21rem; height: 1.05rem; }
 .news-content { position: absolute; left: 2.52rem; top: 1.58rem; width: 14.33rem; height: 5.99rem; }
 .news-frame { position: absolute; left: 0; top: 0; width: 14.33rem; height: 5.99rem; }
@@ -64,7 +90,7 @@ body { height: auto; min-height: 100%; color: #fff; font-family: "Microsoft YaHe
 .news-more { position: absolute; left: 4.37rem; top: 4.55rem; width: 1.38rem; height: .25rem; }
 .news-down { position: absolute; left: 9.39rem; top: 7.77rem; width: .43rem; height: .48rem; }
 
-.character { top: 18.6rem; height: 11.3rem; }
+.character { top: calc(var(--home-top) + 200vh); height: 11.3rem; transform: scaleY(var(--scale-character)); transform-origin: top left; overflow: clip; }
 .character h2 { top: .27rem; }
 .character-frame { position: absolute; left: 6.79rem; top: 3.38rem; width: 11.78rem; height: 6.08rem; }
 .character-art { position: absolute; left: .22rem; top: 1.87rem; width: 10.94rem; height: 9.49rem; }
@@ -112,7 +138,7 @@ body { height: auto; min-height: 100%; color: #fff; font-family: "Microsoft YaHe
 .character-picker img:nth-child(6) { left: 13.81rem; top: 10.15rem; }
 .character-picker .coming { left: 15.39rem; top: 10.15rem; width: 1.5rem; height: .51rem; }
 
-.features { top: 29.9rem; height: 11.9rem; }
+.features { top: calc(var(--home-top) + 300vh); height: 11.9rem; transform: scaleY(var(--scale-features)); transform-origin: top left; overflow: clip; }
 .feature-decor { position: absolute; left: 0; top: -1.78rem; width: 19.2rem; height: 11.91rem; }
 .features h2 { z-index: 2; top: .5rem; }
 .feature-gallery { position: absolute; left: 0; top: 0; width: 19.2rem; height: 9.8rem; }
@@ -127,7 +153,7 @@ body { height: auto; min-height: 100%; color: #fff; font-family: "Microsoft YaHe
 .feature-dots img { width: .26rem; height: .23rem; transition: width .18s ease, height .18s ease, transform .18s ease; }
 .feature-dots img.is-active { width: .32rem; height: .28rem; }
 
-.community { top: 41.8rem; height: 9.6rem; }
+.community { top: calc(var(--home-top) + 400vh); height: 9.6rem; transform: scaleY(var(--scale-community)); transform-origin: top left; overflow: clip; }
 .community-bg { position: absolute; left: 0; top: 1.44rem; width: 19.2rem; height: 8.48rem; }
 .community h2 { left: 7.89rem; top: .69rem; width: 3.39rem; height: 1.09rem; }
 .community .section-title { width: 3.39rem; height: 1.09rem; }
@@ -145,7 +171,7 @@ body { height: auto; min-height: 100%; color: #fff; font-family: "Microsoft YaHe
 .social-list li:nth-child(10) { left: 13.43rem; top: 6.39rem; }
 .social-list img { width: 1.68rem; height: auto; }
 
-.site-footer { top: 51.4rem; height: 2.18rem; }
+.site-footer { top: calc(var(--home-top) + 500vh); height: 2.18rem; }
 .footer-logo, .footer-copy { position: absolute; left: -9999px; }
 .footer-links-fallback, .site-footer #afooter { position: absolute; z-index: 2; left: 8.2rem; top: .42rem; height: .24rem; color: transparent; font: .12rem/.22rem "Microsoft YaHei", sans-serif; white-space: nowrap; }
 .footer-links-fallback { display: flex; }
@@ -167,7 +193,7 @@ button { font: inherit; }
 .hit, .news-tab-actions button, .news-pages button, .feature-dot-actions button, .social-actions button, .row-hit { position: absolute; z-index: 5; padding: 0; border: 0; background: transparent; cursor: pointer; }
 .hover-visual { transform-origin: center center; }
 .feature-dots img.hover-visual { transition: width .18s ease, height .18s ease; }
-.hover-visual.is-hovered, .login-label:hover, .dialog button:hover img { transform: scale(1.025); }
+.hover-visual.is-hovered, .dialog button:hover img { transform: scale(1.025); }
 button:focus-visible, .site-nav a:focus-visible { outline: .02rem solid #ffe151; outline-offset: .03rem; }
 .site-nav nav a { display: flex; align-items: center; justify-content: center; height: .69rem; flex: none; }
 .site-nav nav a:nth-child(1) img { width: .34rem; height: .18rem; }
@@ -178,7 +204,7 @@ button:focus-visible, .site-nav a:focus-visible { outline: .02rem solid #ffe151;
 .site-nav nav a img { transition: filter .18s ease; }
 .site-nav nav a.is-active img { filter: brightness(0) saturate(100%) invert(81%) sepia(93%) saturate(990%) hue-rotate(357deg) brightness(103%) contrast(104%); }
 .nav-indicator { position: absolute; left: 0; bottom: 0; width: .34rem; height: .04rem; background: #ffe000; transition: left .28s ease; pointer-events: none; }
-.login-label, .dialog button img { transform-origin: center center; }
+.dialog button img { transform-origin: center center; }
 .text-action { padding: 0; border: 0; background: none; color: inherit; font-weight: inherit; cursor: pointer; }
 .play-hit { left: 11.94rem; top: 6.17rem; width: .53rem; height: .54rem; border-radius: 50%; }
 .download-hit { top: 7.26rem; width: 2.93rem; height: .67rem; }
@@ -251,4 +277,32 @@ button:focus-visible, .site-nav a:focus-visible { outline: .02rem solid #ffe151;
 .super-player { width: 100%; height: 100%; }
 .video-close { right: -.52rem; top: -.48rem; width: .44rem; height: .44rem; font-size: .4rem !important; line-height: .44rem; }
 .video-status { position: absolute; left: 0; right: 0; top: 45%; font-size: .2rem; text-align: center; pointer-events: none; }
-@media (prefers-reduced-motion: reduce) { .part *, .feature-gallery img, .nav-indicator { animation: none !important; transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .part *, .feature-gallery img, .nav-indicator { animation: none !important; transition: none !important; } }
+
+@media (min-width: 1200px) and (max-width: 1919px) and (min-aspect-ratio: 3/2) {
+  .page { --fit-layout: 1; }
+  .canvas-hero { left: var(--hero-bg-inset); transform: scale(var(--hero-bg-scale)); }
+  .hero, .site-nav { transform: none; }
+  .downloads, .news { left: var(--fit-inset-info); transform: scale(var(--fit-scale-info)); }
+  .downloads { top: calc(var(--home-top) + 100vh + var(--fit-offset-info)); }
+  .news { top: calc(var(--home-top) + 100vh + var(--fit-offset-info) + var(--info-news-offset)); }
+  .character { left: var(--fit-inset-character); top: calc(var(--home-top) + 200vh + var(--fit-offset-character)); transform: scale(var(--fit-scale-character)); }
+  .features { left: var(--fit-inset-features); top: calc(var(--home-top) + 300vh + var(--fit-offset-features)); transform: scale(var(--fit-scale-features)); }
+  .community { left: var(--fit-inset-community); top: calc(var(--home-top) + 400vh + var(--fit-offset-community)); transform: scale(var(--fit-scale-community)); }
+}
+
+@media (max-width: 1199px), (max-aspect-ratio: 3/2) {
+  body::after { height: 0; }
+  .page { --scroll-layout: 1; height: 53.58rem; }
+  .canvas-hero, .hero, .site-nav,
+  .canvas-info, .downloads, .news,
+  .canvas-character, .character,
+  .canvas-features, .features,
+  .canvas-community, .community { transform: none; }
+  .canvas-info, .downloads { top: 8.4rem; }
+  .news { top: 10.1rem; }
+  .canvas-character, .character { top: 18.6rem; }
+  .canvas-features, .features { top: 29.96rem; }
+  .canvas-community, .community { top: 41.8rem; }
+  .canvas-footer, .platform-footer, .site-footer { top: 51.4rem; }
+}
