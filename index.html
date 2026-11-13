@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-platform="mobile">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
@@ -8,6 +8,11 @@
   <meta name="keywords" content="全明星觉醒,游戏资讯,角色展示,游戏特色">
   <title>全明星觉醒 - 移动端官网</title>
   <!-- 页面设计：项目设计稿 | 页面制作：前端还原 | 创建：2026-11-05 -->
+  <script>
+    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      location.replace('pc/index.html' + location.search + location.hash)
+    }
+  </script>
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/animation.css">
 </head>
@@ -33,7 +38,7 @@
       </div>
       <h1><img class="main-title" src="ossweb-img/main-title.png" width="709" height="121" alt="来一记帅气的 K.O."></h1>
       <img class="subtitle" src="ossweb-img/subtitle.png" width="490" height="35" alt="SNK正版授权，街机大招策略卡牌手游">
-      <a class="play-trigger message-link" href="#site-message" aria-label="宣传视频暂未开放" data-video-id="m3093w4tk4a" data-message="视频暂未开放" data-track="video_pending" data-track-type="btn" data-track-label="宣传视频暂未开放提示"><img class="play" src="ossweb-img/play.png" width="52" height="51" alt=""></a>
+      <a class="play-trigger" href="#video-dialog" aria-label="播放宣传视频" aria-haspopup="dialog" data-video-id="m3093w4tk4a" data-track="video_play" data-track-type="btn" data-track-label="播放宣传视频"><img class="play" src="ossweb-img/play.png" width="52" height="51" alt=""></a>
       <a class="hero-down" href="#gift" aria-label="查看下载福利" data-track="nav_scroll_gift" data-track-type="btn" data-track-label="向下查看下载福利"><img src="ossweb-img/down-arrow.png" width="40" height="43" alt=""></a>
       <a class="ios download-link message-link" href="#site-message" aria-label="iOS 下载" data-message="iOS 下载地址待提供" data-track="download_ios" data-track-type="download" data-track-label="iOS下载"><img src="ossweb-img/ios.png" width="424" height="75" alt="iOS 下载"></a>
       <a class="android download-link message-link" href="#site-message" aria-label="安卓下载" data-message="安卓下载地址待提供" data-track="download_android" data-track-type="download" data-track-label="安卓下载"><img src="ossweb-img/android.png" width="424" height="75" alt="安卓下载"></a>
@@ -45,10 +50,10 @@
       <img class="gift-title toTopSmall" src="ossweb-img/gift-title.png" width="414" height="60" alt="官网下载领福利">
       <a class="claim-trigger" href="#login" aria-label="立即领取" aria-haspopup="dialog" data-track="gift_claim_open" data-track-type="btn" data-track-label="领取礼包前登录"><img class="claim" src="ossweb-img/claim.png" width="152" height="49" alt=""></a>
       <ul class="gift-list">
-        <li><img src="ossweb-img/gift-item.png" width="107" height="98" alt="游戏道具"><img src="ossweb-img/item-count.png" width="62" height="19" alt="道具 x1"></li>
-        <li><img src="ossweb-img/gift-item.png" width="107" height="98" alt="游戏道具"><img src="ossweb-img/item-count.png" width="62" height="19" alt="道具 x1"></li>
-        <li><img src="ossweb-img/gift-item.png" width="107" height="98" alt="游戏道具"><img src="ossweb-img/item-count.png" width="62" height="19" alt="道具 x1"></li>
-        <li><img src="ossweb-img/gift-item.png" width="107" height="98" alt="游戏道具"><img src="ossweb-img/item-count.png" width="62" height="19" alt="道具 x1"></li>
+        <li><img src="ossweb-img/gift-item.png" width="107" height="98" alt="游戏道具"><span class="item-count api-text" data-content="giftItems.0.label"></span></li>
+        <li><img src="ossweb-img/gift-item.png" width="107" height="98" alt="游戏道具"><span class="item-count api-text" data-content="giftItems.1.label"></span></li>
+        <li><img src="ossweb-img/gift-item.png" width="107" height="98" alt="游戏道具"><span class="item-count api-text" data-content="giftItems.2.label"></span></li>
+        <li><img src="ossweb-img/gift-item.png" width="107" height="98" alt="游戏道具"><span class="item-count api-text" data-content="giftItems.3.label"></span></li>
       </ul>
     </section>
 
@@ -67,7 +72,7 @@
             <img src="ossweb-img/news-poster.png" width="598" height="348" alt="" aria-hidden="true">
           </div>
         </div>
-        <img class="news-caption" src="ossweb-img/news-caption.png" width="310" height="24" alt="冠军领好礼，冠军领好礼">
+        <span class="news-caption api-text" data-content="news.caption"></span>
         <div class="news-pagination" aria-label="选择资讯海报">
           <img src="ossweb-img/news-pagination.png" width="622" height="84" alt="">
           <a class="news-page" href="#news-slide-1" aria-label="第 1 张资讯海报" data-slide="0" data-track="news_slide_1" data-track-type="btn" data-track-label="资讯海报第1张"></a>
@@ -86,12 +91,13 @@
           <a class="news-tab" href="#news-list" aria-label="攻略" data-category="guide" data-track="news_tab_guide" data-track-type="btn" data-track-label="攻略资讯"><img class="tab-unselected" src="ossweb-img/tab-guide.png" width="126" height="45" alt=""><img class="tab-selected" src="ossweb-img/tab-guide-selected.png" width="126" height="47" alt=""></a>
         </div>
         <ul class="news-list" id="news-list">
-          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><img class="category" src="ossweb-img/category.png" width="47" height="22" alt="分类"><img class="news-text" src="ossweb-img/news-text.png" width="286" height="22" alt="冠军领好礼"><img class="date" src="ossweb-img/news-date.png" width="89" height="15" alt="2025/12/23"></li>
-          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><img class="category" src="ossweb-img/category.png" width="47" height="22" alt="分类"><img class="news-text" src="ossweb-img/news-text.png" width="286" height="22" alt="冠军领好礼"><img class="date" src="ossweb-img/news-date.png" width="89" height="15" alt="2025/12/23"></li>
-          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><img class="category" src="ossweb-img/category.png" width="47" height="22" alt="分类"><img class="news-text" src="ossweb-img/news-text.png" width="286" height="22" alt="冠军领好礼"><img class="date" src="ossweb-img/news-date.png" width="89" height="15" alt="2025/12/23"></li>
-          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><img class="category" src="ossweb-img/category.png" width="47" height="22" alt="分类"><img class="news-text" src="ossweb-img/news-text.png" width="286" height="22" alt="冠军领好礼"><img class="date" src="ossweb-img/news-date.png" width="89" height="15" alt="2025/12/23"></li>
-          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><img class="category" src="ossweb-img/category.png" width="47" height="22" alt="分类"><img class="news-text" src="ossweb-img/news-text.png" width="286" height="22" alt="冠军领好礼"><img class="date" src="ossweb-img/news-date.png" width="89" height="15" alt="2025/12/23"></li>
+          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.0.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.0.tag"></span><span class="news-title-text api-text" data-content="news.items.0.title"></span></span><span class="date api-text" data-content="news.items.0.date"></span><a href="#" class="row-hit" aria-label="查看第1条资讯" data-action="news-item" data-track="news_item_1"></a></li>
+          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.1.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.1.tag"></span><span class="news-title-text api-text" data-content="news.items.1.title"></span></span><span class="date api-text" data-content="news.items.1.date"></span><a href="#" class="row-hit" aria-label="查看第2条资讯" data-action="news-item" data-track="news_item_2"></a></li>
+          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.2.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.2.tag"></span><span class="news-title-text api-text" data-content="news.items.2.title"></span></span><span class="date api-text" data-content="news.items.2.date"></span><a href="#" class="row-hit" aria-label="查看第3条资讯" data-action="news-item" data-track="news_item_3"></a></li>
+          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.3.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.3.tag"></span><span class="news-title-text api-text" data-content="news.items.3.title"></span></span><span class="date api-text" data-content="news.items.3.date"></span><a href="#" class="row-hit" aria-label="查看第4条资讯" data-action="news-item" data-track="news_item_4"></a></li>
+          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.4.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.4.tag"></span><span class="news-title-text api-text" data-content="news.items.4.title"></span></span><span class="date api-text" data-content="news.items.4.date"></span><a href="#" class="row-hit" aria-label="查看第5条资讯" data-action="news-item" data-track="news_item_5"></a></li>
         </ul>
+        <p class="news-empty" hidden>暂无相关资讯</p>
         <a class="news-more message-link" href="#site-message" aria-label="更多资讯" data-message="更多资讯页面待接入" data-track="news_more" data-track-type="btn" data-track-label="更多资讯"><img src="ossweb-img/news-more.png" width="138" height="24" alt=""></a>
       </div>
       <img class="news-down" src="ossweb-img/down-arrow.png" width="40" height="43" alt="">
@@ -102,33 +108,34 @@
       <div class="character-backdrop" aria-hidden="true"></div>
       <h2><img class="character-title toTopSmall" src="ossweb-img/character-title.png" width="283" height="71" alt="角色展示"></h2>
       <img class="character-art" src="ossweb-img/character-art.png" width="750" height="776" alt="橘右京角色立绘">
-      <a class="character-action effect message-link" href="#site-message" aria-label="查看战斗特效" data-message="战斗特效播放链接待提供" data-track="character_effect" data-track-type="btn" data-track-label="查看战斗特效"><img src="ossweb-img/effect.png" width="49" height="177" alt=""></a>
-      <a class="character-action voice message-link" href="#site-message" aria-label="聆听角色语音" data-message="角色语音资源待提供" data-track="character_voice" data-track-type="btn" data-track-label="聆听角色语音"><img src="ossweb-img/voice.png" width="48" height="177" alt=""></a>
+      <a class="character-action effect" href="#video-dialog" aria-label="查看战斗特效" aria-haspopup="dialog" data-video-id="m3093w4tk4a" data-track="character_effect" data-track-type="btn" data-track-label="查看战斗特效"><img src="ossweb-img/effect.png" width="49" height="177" alt=""></a>
+      <a class="character-action voice" href="#video-dialog" aria-label="聆听角色语音" aria-haspopup="dialog" data-video-id="m3093w4tk4a" data-track="character_voice" data-track-type="btn" data-track-label="聆听角色语音"><img src="ossweb-img/voice.png" width="48" height="177" alt=""></a>
       <div class="character-info">
         <img class="character-panel" src="ossweb-img/character-panel.png" width="730" height="408" alt="">
         <img class="character-decor" src="ossweb-img/character-decor.png" width="512" height="14" alt="">
         <img class="character-nameplate" src="ossweb-img/character-nameplate.png" width="473" height="163" alt="">
-        <div class="character-name">橘右京<span>Ukyo Tachibana</span></div>
+        <div class="character-name"><span class="character-name-zh api-text" data-content="character.name"></span><span class="character-name-en api-text" data-content="character.englishName"></span></div>
         <img class="character-description-bg" src="ossweb-img/character-description-bg.png" width="722" height="98" alt="">
-        <img class="character-desc" src="ossweb-img/character-desc.png" width="529" height="37" alt="命不久矣的剑术天才，性格内敛，沉默而孤傲。自知时日无多，却从没为执剑的理由而迷惘，紧握自己的命运决定战至最后一刻。">
+        <p class="character-desc api-text" data-content="character.description"></p>
         <dl class="character-facts">
-          <div><dt><img src="ossweb-img/birth-label.png" width="33" height="12" alt="生日"></dt><dd><img src="ossweb-img/birth.png" width="51" height="13" alt="9月20日"></dd></div>
-          <div><dt><img src="ossweb-img/height-label.png" width="33" height="14" alt="身高"></dt><dd><img src="ossweb-img/height.png" width="45" height="10" alt="175cm"></dd></div>
-          <div><dt><img src="ossweb-img/weight-label.png" width="33" height="13" alt="体重"></dt><dd><img src="ossweb-img/weight.png" width="35" height="15" alt="41kg"></dd></div>
-          <div><dt><img src="ossweb-img/blood-label.png" width="34" height="13" alt="血型"></dt><dd><img src="ossweb-img/blood.png" width="18" height="10" alt="AB"></dd></div>
-          <div><dt><img src="ossweb-img/size-label.png" width="33" height="13" alt="三维"></dt><dd><img src="ossweb-img/size.png" width="26" height="13" alt="不明"></dd></div>
-          <div><dt><img src="ossweb-img/interest-label.png" width="33" height="13" alt="兴趣"></dt><dd><img src="ossweb-img/interest.png" width="126" height="13" alt="和圭殿在一起的时候"></dd></div>
-          <div><dt><img src="ossweb-img/important-label.png" width="90" height="13" alt="最重要的东西"></dt><dd><img src="ossweb-img/important.png" width="62" height="13" alt="自作·无铭"></dd></div>
+          <div><dt><span class="api-text" data-content="character.facts.birth.label"></span></dt><dd><span class="api-text" data-content="character.facts.birth.value"></span></dd></div>
+          <div><dt><span class="api-text" data-content="character.facts.height.label"></span></dt><dd><span class="api-text" data-content="character.facts.height.value"></span></dd></div>
+          <div><dt><span class="api-text" data-content="character.facts.weight.label"></span></dt><dd><span class="api-text" data-content="character.facts.weight.value"></span></dd></div>
+          <div><dt><span class="api-text" data-content="character.facts.blood.label"></span></dt><dd><span class="api-text" data-content="character.facts.blood.value"></span></dd></div>
+          <div><dt><span class="api-text" data-content="character.facts.size.label"></span></dt><dd><span class="api-text" data-content="character.facts.size.value"></span></dd></div>
+          <div><dt><span class="api-text" data-content="character.facts.interest.label"></span></dt><dd><span class="api-text" data-content="character.facts.interest.value"></span></dd></div>
+          <div><dt><span class="api-text" data-content="character.facts.important.label"></span></dt><dd><span class="api-text" data-content="character.facts.important.value"></span></dd></div>
         </dl>
         <img class="school" src="ossweb-img/school.png" width="206" height="51" alt="神梦想一刀流">
       </div>
+      <div class="character-pending" role="status" aria-live="polite"><img src="ossweb-img/portrait-1.png" width="105" height="106" alt=""><p>角色资料待开放</p></div>
       <div class="character-picker">
-        <a class="character-picker-action picker-left message-link" href="#site-message" aria-label="上一位角色" data-message="更多角色资料待开放" data-track="character_prev" data-track-type="btn" data-track-label="上一位角色"><img src="ossweb-img/arrow-left.png" width="31" height="35" alt=""></a>
-        <a class="character-picker-action portrait portrait-one message-link" href="#site-message" aria-label="查看角色一" data-message="该角色资料待开放" data-track="character_portrait_1" data-track-type="btn" data-track-label="查看角色一"><img src="ossweb-img/portrait-1.png" width="105" height="106" alt=""></a>
-        <a class="character-picker-action portrait portrait-two message-link" href="#site-message" aria-label="橘右京，当前角色" aria-current="true" data-message="当前展示角色：橘右京" data-track="character_portrait_2" data-track-type="btn" data-track-label="查看当前角色"><img src="ossweb-img/portrait-2.png" width="116" height="116" alt=""></a>
-        <a class="character-picker-action portrait portrait-three message-link" href="#site-message" aria-label="查看角色三" data-message="该角色资料待开放" data-track="character_portrait_3" data-track-type="btn" data-track-label="查看角色三"><img src="ossweb-img/portrait-3.png" width="106" height="106" alt=""></a>
-        <a class="character-picker-action portrait portrait-four message-link" href="#site-message" aria-label="查看角色四" data-message="该角色资料待开放" data-track="character_portrait_4" data-track-type="btn" data-track-label="查看角色四"><img src="ossweb-img/portrait-4.png" width="106" height="105" alt=""></a>
-        <a class="character-picker-action picker-right message-link" href="#site-message" aria-label="下一位角色" data-message="更多角色资料待开放" data-track="character_next" data-track-type="btn" data-track-label="下一位角色"><img src="ossweb-img/arrow-right.png" width="31" height="35" alt=""></a>
+        <a class="character-picker-action picker-left" href="#" aria-label="上一位角色" data-character-step="-1" data-track="character_prev" data-track-type="btn" data-track-label="上一位角色"><img src="ossweb-img/arrow-left.png" width="31" height="35" alt=""></a>
+        <a class="character-picker-action portrait portrait-one" href="#" aria-label="查看角色一" data-character-index="0" data-track="character_portrait_1" data-track-type="btn" data-track-label="查看角色一"><img src="ossweb-img/portrait-1.png" width="105" height="106" alt=""></a>
+        <a class="character-picker-action portrait portrait-two is-selected" href="#" aria-label="橘右京，当前角色" aria-current="true" data-character-index="1" data-track="character_portrait_2" data-track-type="btn" data-track-label="查看当前角色"><img src="ossweb-img/portrait-2.png" width="116" height="116" alt=""></a>
+        <a class="character-picker-action portrait portrait-three" href="#" aria-label="查看角色三" data-character-index="2" data-track="character_portrait_3" data-track-type="btn" data-track-label="查看角色三"><img src="ossweb-img/portrait-3.png" width="106" height="106" alt=""></a>
+        <a class="character-picker-action portrait portrait-four" href="#" aria-label="查看角色四" data-character-index="3" data-track="character_portrait_4" data-track-type="btn" data-track-label="查看角色四"><img src="ossweb-img/portrait-4.png" width="106" height="105" alt=""></a>
+        <a class="character-picker-action picker-right" href="#" aria-label="下一位角色" data-character-step="1" data-track="character_next" data-track-type="btn" data-track-label="下一位角色"><img src="ossweb-img/arrow-right.png" width="31" height="35" alt=""></a>
         <img class="coming" src="ossweb-img/coming.png" width="109" height="42" alt="敬请期待">
       </div>
     </section>
@@ -154,16 +161,16 @@
       <img class="community-bg" src="ossweb-img/community-bg.png" width="750" height="582" alt="">
       <h2><img class="community-title toTopSmall" src="ossweb-img/community-title.png" width="233" height="75" alt="社区"></h2>
       <ul class="social-list">
-        <li><a class="social-link message-link" href="#site-message" aria-label="微信公众号" data-message="微信公众号入口待提供" data-track="community_wechat" data-track-type="link" data-track-label="微信公众号"><img src="ossweb-img/social-wechat.png" width="110" height="142" alt="微信公众号"></a></li>
-        <li><a class="social-link message-link" href="#site-message" aria-label="微信游戏圈" data-message="微信游戏圈入口待提供" data-track="community_game" data-track-type="link" data-track-label="微信游戏圈"><img src="ossweb-img/social-game.png" width="109" height="142" alt="微信游戏圈"></a></li>
-        <li><a class="social-link message-link" href="#site-message" aria-label="官方微信群" data-message="官方微信群入口待提供" data-track="community_group" data-track-type="link" data-track-label="官方微信群"><img src="ossweb-img/social-group.png" width="110" height="142" alt="官方微信群"></a></li>
-        <li><a class="social-link message-link" href="#site-message" aria-label="官方QQ群" data-message="官方QQ群入口待提供" data-track="community_qq" data-track-type="link" data-track-label="官方QQ群"><img src="ossweb-img/social-qq.png" width="110" height="144" alt="官方QQ群"></a></li>
-        <li><a class="social-link message-link" href="#site-message" aria-label="手Q频道" data-message="手Q频道入口待提供" data-track="community_channel" data-track-type="link" data-track-label="手Q频道"><img src="ossweb-img/social-channel.png" width="109" height="145" alt="手Q频道"></a></li>
-        <li><a class="social-link message-link" href="#site-message" aria-label="TapTap" data-message="TapTap 页面地址待提供" data-track="community_taptap" data-track-type="link" data-track-label="TapTap"><img src="ossweb-img/social-taptap.png" width="110" height="142" alt="TapTap"></a></li>
-        <li><a class="social-link message-link" href="#site-message" aria-label="微信视频号" data-message="微信视频号入口待提供" data-track="community_video" data-track-type="link" data-track-label="微信视频号"><img src="ossweb-img/social-video.png" width="109" height="141" alt="微信视频号"></a></li>
-        <li><a class="social-link message-link" href="#site-message" aria-label="抖音" data-message="抖音主页地址待提供" data-track="community_douyin" data-track-type="link" data-track-label="抖音"><img src="ossweb-img/social-douyin.png" width="110" height="142" alt="抖音"></a></li>
-        <li><a class="social-link message-link" href="#site-message" aria-label="哔哩哔哩" data-message="哔哩哔哩主页地址待提供" data-track="community_bilibili" data-track-type="link" data-track-label="哔哩哔哩"><img src="ossweb-img/social-bilibili.png" width="110" height="142" alt="哔哩哔哩"></a></li>
-        <li><a class="social-link message-link" href="#site-message" aria-label="微博" data-message="微博主页地址待提供" data-track="community_weibo" data-track-type="link" data-track-label="微博"><img src="ossweb-img/social-weibo.png" width="109" height="142" alt="微博"></a></li>
+        <li><a class="social-link" href="#" aria-label="微信公众号" data-track="community_wechat" data-track-type="link" data-track-label="微信公众号"><img src="ossweb-img/social-wechat.png" width="110" height="142" alt="微信公众号"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="微信游戏圈" data-track="community_game" data-track-type="link" data-track-label="微信游戏圈"><img src="ossweb-img/social-game.png" width="109" height="142" alt="微信游戏圈"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="官方微信群" data-track="community_group" data-track-type="link" data-track-label="官方微信群"><img src="ossweb-img/social-group.png" width="110" height="142" alt="官方微信群"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="官方QQ群" data-track="community_qq" data-track-type="link" data-track-label="官方QQ群"><img src="ossweb-img/social-qq.png" width="110" height="144" alt="官方QQ群"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="手Q频道" data-track="community_channel" data-track-type="link" data-track-label="手Q频道"><img src="ossweb-img/social-channel.png" width="109" height="145" alt="手Q频道"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="TapTap" data-track="community_taptap" data-track-type="link" data-track-label="TapTap"><img src="ossweb-img/social-taptap.png" width="110" height="142" alt="TapTap"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="微信视频号" data-track="community_video" data-track-type="link" data-track-label="微信视频号"><img src="ossweb-img/social-video.png" width="109" height="141" alt="微信视频号"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="抖音" data-track="community_douyin" data-track-type="link" data-track-label="抖音"><img src="ossweb-img/social-douyin.png" width="110" height="142" alt="抖音"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="哔哩哔哩" data-track="community_bilibili" data-track-type="link" data-track-label="哔哩哔哩"><img src="ossweb-img/social-bilibili.png" width="110" height="142" alt="哔哩哔哩"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="微博" data-track="community_weibo" data-track-type="link" data-track-label="微博"><img src="ossweb-img/social-weibo.png" width="109" height="142" alt="微博"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
       </ul>
     </section>
 
@@ -181,10 +188,26 @@
       <p class="login-status" id="login-status" role="status" aria-live="polite"></p>
     </div>
   </div>
+  <div class="video-overlay" id="video-overlay" hidden>
+    <div class="video-dialog" id="video-dialog" role="dialog" aria-modal="true" aria-label="宣传视频" tabindex="-1">
+      <a class="video-close" href="#video-close" aria-label="关闭宣传视频" data-track="video_close" data-track-type="btn" data-track-label="关闭宣传视频">×</a>
+      <div class="video-player" id="video-player"></div>
+      <p class="video-status" id="video-status" role="status" aria-live="polite"></p>
+    </div>
+  </div>
   <script id="screenFix" data-size="750" src="js/remFix.js"></script>
-  <script src="//ossweb-img.qq.com/images/js/jquery/jquery-1.11.3.min.js"></script>
   <script src="//ossweb-img.qq.com/images/js/eas/eas.js"></script>
+  <script src="https://vm.gtimg.cn/thumbplayer/superplayer/superplayer.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/common.js"></script>
   <script src="js/index.js"></script>
+  <script src="js/mobile-video.js"></script>
+  <script src="js/mobile-news.js"></script>
+  <script src="js/news-carousel.js"></script>
+  <script src="js/mobile-feature.js"></script>
+  <script src="js/character-picker.js"></script>
+  <script src="js/community.js"></script>
+  <script src="js/content-api.js"></script>
   <script src="//game.gtimg.cn/images/js/2018foot/foot.js"></script>
 </body>
 </html>
