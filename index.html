@@ -9,12 +9,13 @@
   <title>全明星觉醒 - 移动端官网</title>
   <!-- 页面设计：项目设计稿 | 页面制作：前端还原 | 创建：2026-11-05 -->
   <script>
-    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && new URLSearchParams(location.search).get('preview') !== 'mobile' && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       location.replace('pc/index.html' + location.search + location.hash)
     }
   </script>
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/animation.css">
+  <link rel="stylesheet" href="css/news-detail.css">
 </head>
 <body>
   <main class="page">
@@ -24,8 +25,8 @@
       <img class="hero" src="ossweb-img/hero.png" width="750" height="1326" alt="全明星觉醒人物主视觉">
       <div class="topbar">
         <a class="logo-link" href="#home" aria-label="返回首页" data-track="nav_logo_home" data-track-type="btn" data-track-label="点击Logo返回首页"><img class="logo" src="ossweb-img/logo.png" width="143" height="77" alt="全明星觉醒"></a>
-        <img class="welcome" src="ossweb-img/welcome.png" width="112" height="24" alt="欢迎您，请">
-        <a class="login-trigger" href="#login" aria-label="登录" aria-haspopup="dialog" data-track="login_open" data-track-type="btn" data-track-label="打开登录弹窗"><img class="login" src="ossweb-img/login.png" width="44" height="21" alt=""><img class="login-underline" src="ossweb-img/login-underline.png" width="44" height="1" alt=""></a>
+        <span class="welcome">欢迎您，请</span>
+        <a class="login-trigger" href="#login" aria-label="登录" aria-haspopup="dialog" data-track="login_open" data-track-type="btn" data-track-label="打开登录弹窗"><span class="login">登录</span><img class="login-underline" src="ossweb-img/login-underline.png" width="44" height="1" alt=""></a>
         <a class="menu-trigger" href="#site-nav" aria-label="打开导航菜单" aria-controls="site-nav" aria-expanded="false" data-track="nav_menu_toggle" data-track-type="btn" data-track-label="切换导航菜单"><img class="menu" src="ossweb-img/menu.png" width="44" height="35" alt=""></a>
         <nav class="site-nav" id="site-nav" aria-label="页面导航" hidden>
           <a href="#home" data-track="nav_home" data-track-type="btn" data-track-label="导航首页">首页</a>
@@ -40,15 +41,15 @@
       <img class="subtitle" src="ossweb-img/subtitle.png" width="490" height="35" alt="SNK正版授权，街机大招策略卡牌手游">
       <a class="play-trigger" href="#video-dialog" aria-label="播放宣传视频" aria-haspopup="dialog" data-video-id="m3093w4tk4a" data-track="video_play" data-track-type="btn" data-track-label="播放宣传视频"><img class="play" src="ossweb-img/play.png" width="52" height="51" alt=""></a>
       <a class="hero-down" href="#gift" aria-label="查看下载福利" data-track="nav_scroll_gift" data-track-type="btn" data-track-label="向下查看下载福利"><img src="ossweb-img/down-arrow.png" width="40" height="43" alt=""></a>
-      <a class="ios download-link message-link" href="#site-message" aria-label="iOS 下载" data-message="iOS 下载地址待提供" data-track="download_ios" data-track-type="download" data-track-label="iOS下载"><img src="ossweb-img/ios.png" width="424" height="75" alt="iOS 下载"></a>
-      <a class="android download-link message-link" href="#site-message" aria-label="安卓下载" data-message="安卓下载地址待提供" data-track="download_android" data-track-type="download" data-track-label="安卓下载"><img src="ossweb-img/android.png" width="424" height="75" alt="安卓下载"></a>
+      <a class="ios download-link message-link" href="#site-message" aria-label="iOS 下载" data-message="iOS 下载地址待提供" data-track="download_ios" data-track-type="download" data-track-label="iOS下载"><span class="download-icon" aria-hidden="true"></span><span>iOS 下载</span></a>
+      <a class="android download-link message-link" href="#site-message" aria-label="安卓下载" data-message="安卓下载地址待提供" data-track="download_android" data-track-type="download" data-track-label="安卓下载"><span class="download-icon" aria-hidden="true"></span><span>安卓下载</span></a>
       <img class="hero-copyright" src="ossweb-img/copyright.png" width="373" height="13" alt="©SNK CORPORATION ALL RIGHTS RESERVED.">
     </header>
 
     <section class="gift part" id="gift" aria-label="官网下载领福利">
       <img class="gift-bg" src="ossweb-img/gift-bg.png" width="750" height="217" alt="">
       <img class="gift-title toTopSmall" src="ossweb-img/gift-title.png" width="414" height="60" alt="官网下载领福利">
-      <a class="claim-trigger" href="#login" aria-label="立即领取" aria-haspopup="dialog" data-track="gift_claim_open" data-track-type="btn" data-track-label="领取礼包前登录"><img class="claim" src="ossweb-img/claim.png" width="152" height="49" alt=""></a>
+      <a class="claim-trigger" href="#login" aria-label="立即领取" aria-haspopup="dialog" data-track="gift_claim_open" data-track-type="btn" data-track-label="领取礼包前登录"><span class="claim">立即领取</span></a>
       <ul class="gift-list">
         <li><img src="ossweb-img/gift-item.png" width="107" height="98" alt="游戏道具"><span class="item-count api-text" data-content="giftItems.0.label"></span></li>
         <li><img src="ossweb-img/gift-item.png" width="107" height="98" alt="游戏道具"><span class="item-count api-text" data-content="giftItems.1.label"></span></li>
@@ -62,43 +63,30 @@
       <h2 class="news-heading toTopSmall"><img src="ossweb-img/news-title.png" width="277" height="69" alt="游戏资讯"></h2>
       <div class="news-feature">
         <img class="news-frame" src="ossweb-img/news-frame.png" width="708" height="458" alt="">
-        <div class="news-carousel" role="group" aria-label="游戏资讯海报轮播，第 3 张，共 4 张">
-          <div class="news-carousel-track">
-            <img src="ossweb-img/news-poster.png" width="598" height="348" alt="" aria-hidden="true">
-            <img src="ossweb-img/news-poster.png" width="598" height="348" alt="" aria-hidden="true">
-            <img src="ossweb-img/news-poster.png" width="598" height="348" alt="" aria-hidden="true">
-            <img src="ossweb-img/news-poster.png" width="598" height="348" alt="不知火舞卡牌对决新纪元">
-            <img src="ossweb-img/news-poster.png" width="598" height="348" alt="" aria-hidden="true">
-            <img src="ossweb-img/news-poster.png" width="598" height="348" alt="" aria-hidden="true">
-          </div>
-        </div>
-        <span class="news-caption api-text" data-content="news.caption"></span>
+        <div class="news-carousel" role="group" aria-label="游戏资讯海报轮播" aria-busy="true"><div class="news-carousel-track"></div></div>
+        <p class="news-carousel-status" role="status">海报加载中…</p>
+        <span class="news-caption api-text"></span>
         <div class="news-pagination" aria-label="选择资讯海报">
-          <img src="ossweb-img/news-pagination.png" width="622" height="84" alt="">
-          <a class="news-page" href="#news-slide-1" aria-label="第 1 张资讯海报" data-slide="0" data-track="news_slide_1" data-track-type="btn" data-track-label="资讯海报第1张"></a>
-          <a class="news-page" href="#news-slide-2" aria-label="第 2 张资讯海报" data-slide="1" data-track="news_slide_2" data-track-type="btn" data-track-label="资讯海报第2张"></a>
-          <a class="news-page is-active" href="#news-slide-3" aria-label="第 3 张资讯海报" aria-current="true" data-slide="2" data-track="news_slide_3" data-track-type="btn" data-track-label="资讯海报第3张"></a>
-          <a class="news-page" href="#news-slide-4" aria-label="第 4 张资讯海报" data-slide="3" data-track="news_slide_4" data-track-type="btn" data-track-label="资讯海报第4张"></a>
         </div>
       </div>
       <div class="news-panel">
         <img class="news-panel-bg" src="ossweb-img/news-panel.png" width="713" height="622" alt="">
         <div class="news-tabs" aria-label="资讯分类">
-          <a class="news-tab is-active" href="#news-list" aria-label="最新" aria-current="true" data-category="latest" data-track="news_tab_latest" data-track-type="btn" data-track-label="最新资讯"><img class="tab-unselected" src="ossweb-img/tab-latest-unselected.png" width="123" height="45" alt=""><img class="tab-selected" src="ossweb-img/tab-latest.png" width="128" height="47" alt=""></a>
-          <a class="news-tab" href="#news-list" aria-label="新闻" data-category="news" data-track="news_tab_news" data-track-type="btn" data-track-label="新闻资讯"><img class="tab-unselected" src="ossweb-img/tab-news.png" width="122" height="45" alt=""><img class="tab-selected" src="ossweb-img/tab-news-selected.png" width="129" height="47" alt=""></a>
-          <a class="news-tab" href="#news-list" aria-label="公告" data-category="notice" data-track="news_tab_notice" data-track-type="btn" data-track-label="公告资讯"><img class="tab-unselected" src="ossweb-img/tab-notice.png" width="124" height="45" alt=""><img class="tab-selected" src="ossweb-img/tab-notice-selected.png" width="126" height="47" alt=""></a>
-          <a class="news-tab" href="#news-list" aria-label="活动" data-category="event" data-track="news_tab_event" data-track-type="btn" data-track-label="活动资讯"><img class="tab-unselected" src="ossweb-img/tab-event.png" width="127" height="45" alt=""><img class="tab-selected" src="ossweb-img/tab-event-selected.png" width="129" height="47" alt=""></a>
-          <a class="news-tab" href="#news-list" aria-label="攻略" data-category="guide" data-track="news_tab_guide" data-track-type="btn" data-track-label="攻略资讯"><img class="tab-unselected" src="ossweb-img/tab-guide.png" width="126" height="45" alt=""><img class="tab-selected" src="ossweb-img/tab-guide-selected.png" width="126" height="47" alt=""></a>
+          <a class="news-tab is-active" href="#news-list" aria-label="最新" aria-current="true" data-category="latest" data-track="news_tab_latest" data-track-type="btn" data-track-label="最新资讯"><span data-content="news.categories.latest">最新</span></a>
+          <a class="news-tab" href="#news-list" aria-label="新闻" data-category="news" data-track="news_tab_news" data-track-type="btn" data-track-label="新闻资讯"><span data-content="news.categories.news">新闻</span></a>
+          <a class="news-tab" href="#news-list" aria-label="公告" data-category="notice" data-track="news_tab_notice" data-track-type="btn" data-track-label="公告资讯"><span data-content="news.categories.notice">公告</span></a>
+          <a class="news-tab" href="#news-list" aria-label="活动" data-category="event" data-track="news_tab_event" data-track-type="btn" data-track-label="活动资讯"><span data-content="news.categories.event">活动</span></a>
+          <a class="news-tab" href="#news-list" aria-label="攻略" data-category="guide" data-track="news_tab_guide" data-track-type="btn" data-track-label="攻略资讯"><span data-content="news.categories.guide">攻略</span></a>
         </div>
         <ul class="news-list" id="news-list">
-          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.0.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.0.tag"></span><span class="news-title-text api-text" data-content="news.items.0.title"></span></span><span class="date api-text" data-content="news.items.0.date"></span><a href="#" class="row-hit" aria-label="查看第1条资讯" data-action="news-item" data-track="news_item_1"></a></li>
-          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.1.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.1.tag"></span><span class="news-title-text api-text" data-content="news.items.1.title"></span></span><span class="date api-text" data-content="news.items.1.date"></span><a href="#" class="row-hit" aria-label="查看第2条资讯" data-action="news-item" data-track="news_item_2"></a></li>
-          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.2.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.2.tag"></span><span class="news-title-text api-text" data-content="news.items.2.title"></span></span><span class="date api-text" data-content="news.items.2.date"></span><a href="#" class="row-hit" aria-label="查看第3条资讯" data-action="news-item" data-track="news_item_3"></a></li>
-          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.3.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.3.tag"></span><span class="news-title-text api-text" data-content="news.items.3.title"></span></span><span class="date api-text" data-content="news.items.3.date"></span><a href="#" class="row-hit" aria-label="查看第4条资讯" data-action="news-item" data-track="news_item_4"></a></li>
-          <li><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.4.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.4.tag"></span><span class="news-title-text api-text" data-content="news.items.4.title"></span></span><span class="date api-text" data-content="news.items.4.date"></span><a href="#" class="row-hit" aria-label="查看第5条资讯" data-action="news-item" data-track="news_item_5"></a></li>
+          <li hidden><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.0.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.0.tag"></span><span class="news-title-text api-text" data-content="news.items.0.title"></span></span><span class="date api-text" data-content="news.items.0.date"></span><a href="#" class="row-hit" aria-label="查看第1条资讯" data-action="news-item" data-track="news_item_1"></a></li>
+          <li hidden><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.1.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.1.tag"></span><span class="news-title-text api-text" data-content="news.items.1.title"></span></span><span class="date api-text" data-content="news.items.1.date"></span><a href="#" class="row-hit" aria-label="查看第2条资讯" data-action="news-item" data-track="news_item_2"></a></li>
+          <li hidden><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.2.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.2.tag"></span><span class="news-title-text api-text" data-content="news.items.2.title"></span></span><span class="date api-text" data-content="news.items.2.date"></span><a href="#" class="row-hit" aria-label="查看第3条资讯" data-action="news-item" data-track="news_item_3"></a></li>
+          <li hidden><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.3.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.3.tag"></span><span class="news-title-text api-text" data-content="news.items.3.title"></span></span><span class="date api-text" data-content="news.items.3.date"></span><a href="#" class="row-hit" aria-label="查看第4条资讯" data-action="news-item" data-track="news_item_4"></a></li>
+          <li hidden><img class="row-bg" src="ossweb-img/news-row.png" width="692" height="92" alt=""><span class="category api-text" data-content="news.items.4.category"></span><span class="news-text"><span class="news-separator" aria-hidden="true">■</span><span class="news-tag api-text" data-content="news.items.4.tag"></span><span class="news-title-text api-text" data-content="news.items.4.title"></span></span><span class="date api-text" data-content="news.items.4.date"></span><a href="#" class="row-hit" aria-label="查看第5条资讯" data-action="news-item" data-track="news_item_5"></a></li>
         </ul>
         <p class="news-empty" hidden>暂无相关资讯</p>
-        <a class="news-more message-link" href="#site-message" aria-label="更多资讯" data-message="更多资讯页面待接入" data-track="news_more" data-track-type="btn" data-track-label="更多资讯"><img src="ossweb-img/news-more.png" width="138" height="24" alt=""></a>
+        <a class="news-more message-link" href="#site-message" aria-label="更多资讯" data-message="更多资讯页面待接入" data-track="news_more" data-track-type="btn" data-track-label="更多资讯">更多资讯+</a>
       </div>
       <img class="news-down" src="ossweb-img/down-arrow.png" width="40" height="43" alt="">
     </section>
@@ -108,8 +96,8 @@
       <div class="character-backdrop" aria-hidden="true"></div>
       <h2><img class="character-title toTopSmall" src="ossweb-img/character-title.png" width="283" height="71" alt="角色展示"></h2>
       <img class="character-art" src="ossweb-img/character-art.png" width="750" height="776" alt="橘右京角色立绘">
-      <a class="character-action effect" href="#video-dialog" aria-label="查看战斗特效" aria-haspopup="dialog" data-video-id="m3093w4tk4a" data-track="character_effect" data-track-type="btn" data-track-label="查看战斗特效"><img src="ossweb-img/effect.png" width="49" height="177" alt=""></a>
-      <a class="character-action voice" href="#video-dialog" aria-label="聆听角色语音" aria-haspopup="dialog" data-video-id="m3093w4tk4a" data-track="character_voice" data-track-type="btn" data-track-label="聆听角色语音"><img src="ossweb-img/voice.png" width="48" height="177" alt=""></a>
+      <a class="character-action effect" href="#video-dialog" aria-label="查看战斗特效" aria-haspopup="dialog" data-video-id="m3093w4tk4a" data-track="character_effect" data-track-type="btn" data-track-label="查看战斗特效"><span class="action-icon" aria-hidden="true"></span><span class="action-label">点击查看战斗特效</span></a>
+      <a class="character-action voice" href="#video-dialog" aria-label="聆听角色语音" aria-haspopup="dialog" data-video-id="m3093w4tk4a" data-track="character_voice" data-track-type="btn" data-track-label="聆听角色语音"><span class="action-icon" aria-hidden="true"></span><span class="action-label">点击聆听角色语音</span></a>
       <div class="character-info">
         <img class="character-panel" src="ossweb-img/character-panel.png" width="730" height="408" alt="">
         <img class="character-decor" src="ossweb-img/character-decor.png" width="512" height="14" alt="">
@@ -126,7 +114,7 @@
           <div><dt><span class="api-text" data-content="character.facts.interest.label"></span></dt><dd><span class="api-text" data-content="character.facts.interest.value"></span></dd></div>
           <div><dt><span class="api-text" data-content="character.facts.important.label"></span></dt><dd><span class="api-text" data-content="character.facts.important.value"></span></dd></div>
         </dl>
-        <img class="school" src="ossweb-img/school.png" width="206" height="51" alt="神梦想一刀流">
+        <span class="school api-text" data-content="character.school"></span>
       </div>
       <div class="character-pending" role="status" aria-live="polite"><img src="ossweb-img/portrait-1.png" width="105" height="106" alt=""><p>角色资料待开放</p></div>
       <div class="character-picker">
@@ -136,14 +124,14 @@
         <a class="character-picker-action portrait portrait-three" href="#" aria-label="查看角色三" data-character-index="2" data-track="character_portrait_3" data-track-type="btn" data-track-label="查看角色三"><img src="ossweb-img/portrait-3.png" width="106" height="106" alt=""></a>
         <a class="character-picker-action portrait portrait-four" href="#" aria-label="查看角色四" data-character-index="3" data-track="character_portrait_4" data-track-type="btn" data-track-label="查看角色四"><img src="ossweb-img/portrait-4.png" width="106" height="105" alt=""></a>
         <a class="character-picker-action picker-right" href="#" aria-label="下一位角色" data-character-step="1" data-track="character_next" data-track-type="btn" data-track-label="下一位角色"><img src="ossweb-img/arrow-right.png" width="31" height="35" alt=""></a>
-        <img class="coming" src="ossweb-img/coming.png" width="109" height="42" alt="敬请期待">
+        <span class="coming api-text" data-content="ui.coming"></span>
       </div>
     </section>
 
     <section class="features part" id="features" aria-label="游戏特色">
       <h2><img class="features-title toTopSmall" src="ossweb-img/feature-title.png" width="283" height="71" alt="游戏特色"></h2>
       <img class="feature-decor" src="ossweb-img/feature-decor.png" width="750" height="568" alt="">
-      <div class="feature-gallery" aria-label="游戏特色图片轮播">
+      <div class="feature-gallery" aria-label="游戏特色图片轮播" data-status-text="特色内容加载中…">
         <div class="feature-slide is-prev" data-slide="0"><img src="ossweb-img/feature-left.png" width="447" height="256" alt="街机手感，重燃记忆"></div>
         <div class="feature-slide is-active" data-slide="1"><img src="ossweb-img/feature-main.png" width="558" height="320" alt="宿命之战再启，全明星登场"></div>
         <div class="feature-slide is-next" data-slide="2"><img src="ossweb-img/feature-right.png" width="447" height="256" alt="格斗家集结"></div>
@@ -161,16 +149,16 @@
       <img class="community-bg" src="ossweb-img/community-bg.png" width="750" height="582" alt="">
       <h2><img class="community-title toTopSmall" src="ossweb-img/community-title.png" width="233" height="75" alt="社区"></h2>
       <ul class="social-list">
-        <li><a class="social-link" href="#" aria-label="微信公众号" data-track="community_wechat" data-track-type="link" data-track-label="微信公众号"><img src="ossweb-img/social-wechat.png" width="110" height="142" alt="微信公众号"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
-        <li><a class="social-link" href="#" aria-label="微信游戏圈" data-track="community_game" data-track-type="link" data-track-label="微信游戏圈"><img src="ossweb-img/social-game.png" width="109" height="142" alt="微信游戏圈"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
-        <li><a class="social-link" href="#" aria-label="官方微信群" data-track="community_group" data-track-type="link" data-track-label="官方微信群"><img src="ossweb-img/social-group.png" width="110" height="142" alt="官方微信群"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
-        <li><a class="social-link" href="#" aria-label="官方QQ群" data-track="community_qq" data-track-type="link" data-track-label="官方QQ群"><img src="ossweb-img/social-qq.png" width="110" height="144" alt="官方QQ群"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
-        <li><a class="social-link" href="#" aria-label="手Q频道" data-track="community_channel" data-track-type="link" data-track-label="手Q频道"><img src="ossweb-img/social-channel.png" width="109" height="145" alt="手Q频道"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
-        <li><a class="social-link" href="#" aria-label="TapTap" data-track="community_taptap" data-track-type="link" data-track-label="TapTap"><img src="ossweb-img/social-taptap.png" width="110" height="142" alt="TapTap"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
-        <li><a class="social-link" href="#" aria-label="微信视频号" data-track="community_video" data-track-type="link" data-track-label="微信视频号"><img src="ossweb-img/social-video.png" width="109" height="141" alt="微信视频号"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
-        <li><a class="social-link" href="#" aria-label="抖音" data-track="community_douyin" data-track-type="link" data-track-label="抖音"><img src="ossweb-img/social-douyin.png" width="110" height="142" alt="抖音"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
-        <li><a class="social-link" href="#" aria-label="哔哩哔哩" data-track="community_bilibili" data-track-type="link" data-track-label="哔哩哔哩"><img src="ossweb-img/social-bilibili.png" width="110" height="142" alt="哔哩哔哩"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
-        <li><a class="social-link" href="#" aria-label="微博" data-track="community_weibo" data-track-type="link" data-track-label="微博"><img src="ossweb-img/social-weibo.png" width="109" height="142" alt="微博"><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="微信公众号" data-track="community_wechat" data-track-type="link" data-track-label="微信公众号"><img src="ossweb-img/social-wechat.png" width="110" height="142" alt=""><span class="social-name">微信公众号</span><span class="social-en" aria-hidden="true">WECHAT</span><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="微信游戏圈" data-track="community_game" data-track-type="link" data-track-label="微信游戏圈"><img src="ossweb-img/social-game.png" width="109" height="142" alt=""><span class="social-name">微信游戏圈</span><span class="social-en" aria-hidden="true">GAME CIRCLE</span><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="官方微信群" data-track="community_group" data-track-type="link" data-track-label="官方微信群"><img src="ossweb-img/social-group.png" width="110" height="142" alt=""><span class="social-name">官方微信群</span><span class="social-en" aria-hidden="true">WECHAT GROUP</span><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="官方QQ群" data-track="community_qq" data-track-type="link" data-track-label="官方QQ群"><img src="ossweb-img/social-qq.png" width="110" height="144" alt=""><span class="social-name">官方QQ群</span><span class="social-en" aria-hidden="true">OFFICIAL QQ</span><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="手Q频道" data-track="community_channel" data-track-type="link" data-track-label="手Q频道"><img src="ossweb-img/social-channel.png" width="109" height="145" alt=""><span class="social-name">手Q频道</span><span class="social-en" aria-hidden="true">QQ GUILD</span><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="TapTap" data-track="community_taptap" data-track-type="link" data-track-label="TapTap"><img src="ossweb-img/social-taptap.png" width="110" height="142" alt=""><span class="social-name">TapTap</span><span class="social-en" aria-hidden="true">TAP TAP</span><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="微信视频号" data-track="community_video" data-track-type="link" data-track-label="微信视频号"><img src="ossweb-img/social-video.png" width="109" height="141" alt=""><span class="social-name">微信视频号</span><span class="social-en" aria-hidden="true">VIDEO ACCOUNT</span><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="抖音" data-track="community_douyin" data-track-type="link" data-track-label="抖音"><img src="ossweb-img/social-douyin.png" width="110" height="142" alt=""><span class="social-name">抖音</span><span class="social-en" aria-hidden="true">TIKTOK</span><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="哔哩哔哩" data-track="community_bilibili" data-track-type="link" data-track-label="哔哩哔哩"><img src="ossweb-img/social-bilibili.png" width="110" height="142" alt=""><span class="social-name">哔哩哔哩</span><span class="social-en" aria-hidden="true">BILIBILI</span><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
+        <li><a class="social-link" href="#" aria-label="微博" data-track="community_weibo" data-track-type="link" data-track-label="微博"><img src="ossweb-img/social-weibo.png" width="109" height="142" alt=""><span class="social-name">微博</span><span class="social-en" aria-hidden="true">WEIBO</span><span class="social-qr" aria-hidden="true"><img src="ossweb-img/pc/social-wechat-demo-qr.png" width="304" height="369" alt=""><span>演示二维码</span></span></a></li>
       </ul>
     </section>
 
@@ -183,8 +171,8 @@
       <img class="login-panel" src="ossweb-img/login-panel.png" width="644" height="555" alt="">
       <img class="login-title" src="ossweb-img/login-title.png" width="421" height="105" alt="请先登录">
       <a class="login-close" href="#close" aria-label="关闭登录弹窗" data-track="login_close" data-track-type="btn" data-track-label="关闭登录弹窗"><img src="ossweb-img/login-close.png" width="62" height="49" alt=""></a>
-      <a class="login-choice login-wechat" href="#wechat-login" aria-label="微信登录" data-provider="wechat" data-track="login_wechat" data-track-type="btn" data-track-label="微信登录"><img src="ossweb-img/login-wechat.png" width="151" height="193" alt="微信登录"></a>
-      <a class="login-choice login-qq" href="#qq-login" aria-label="QQ登录" data-provider="qq" data-track="login_qq" data-track-type="btn" data-track-label="QQ登录"><img src="ossweb-img/login-qq.png" width="151" height="193" alt="QQ登录"></a>
+      <a class="login-choice login-wechat" href="#wechat-login" aria-label="微信登录" data-provider="wechat" data-track="login_wechat" data-track-type="btn" data-track-label="微信登录"><img src="ossweb-img/login-wechat.png" width="151" height="193" alt=""><span class="login-choice-label">微信</span></a>
+      <a class="login-choice login-qq" href="#qq-login" aria-label="QQ登录" data-provider="qq" data-track="login_qq" data-track-type="btn" data-track-label="QQ登录"><img src="ossweb-img/login-qq.png" width="151" height="193" alt=""><span class="login-choice-label">QQ</span></a>
       <p class="login-status" id="login-status" role="status" aria-live="polite"></p>
     </div>
   </div>
@@ -208,6 +196,7 @@
   <script src="js/character-picker.js"></script>
   <script src="js/community.js"></script>
   <script src="js/content-api.js"></script>
+  <script src="js/ide-news.js"></script>
   <script src="//game.gtimg.cn/images/js/2018foot/foot.js"></script>
 </body>
 </html>

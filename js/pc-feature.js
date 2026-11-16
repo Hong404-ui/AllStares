@@ -23,7 +23,7 @@
 
   function schedule() {
     clearTimeout(timer)
-    if (slides.length < 2 || document.hidden || !overlay.hidden || activeArea()) return
+    if (!gallery.classList.contains('is-ready') || slides.length < 2 || document.hidden || !overlay.hidden || activeArea()) return
     timer = setTimeout(function () { showFeature(featureIndex + 1) }, 4000)
   }
 
@@ -53,11 +53,10 @@
   }
 
   function setFeatureSlides(items) {
-    if (!Array.isArray(items) || !items.length) return
-    var next = items.map(function (item) {
+    var next = (Array.isArray(items) ? items : []).map(function (item) {
       return { src: item && (item.src || item.image), alt: item && (item.alt || item.title) || '游戏特色图片' }
     }).filter(function (item) { return typeof item.src === 'string' && item.src.trim() })
-    if (!next.length) return
+    if (!next.length) { window.setFeatureSlidesStatus('暂无特色内容'); return }
     slides = next
     var dotsLeft = (19.2 - (slides.length * .32 + Math.max(0, slides.length - 1) * .63)) / 2
     dots.style.left = dotsLeft + 'rem'
@@ -80,6 +79,10 @@
       if (window.bindPcVisualPress) window.bindPcVisualPress(link, dot)
     })
     showFeature(Math.min(1, slides.length - 1))
+    gallery.classList.add('is-ready')
+    gallery.closest('.features').classList.add('has-feature-data')
+    gallery.dataset.statusText = ''
+    schedule()
   }
 
   document.querySelectorAll('[data-feature-step]').forEach(function (link) {
@@ -104,5 +107,11 @@
   gallery.addEventListener('mouseenter', function () { clearTimeout(timer) })
   gallery.addEventListener('mouseleave', schedule)
   window.setFeatureSlides = setFeatureSlides
+  window.setFeatureSlidesStatus = function (message) {
+    clearTimeout(timer)
+    gallery.classList.remove('is-ready')
+    gallery.closest('.features').classList.remove('has-feature-data')
+    gallery.dataset.statusText = message
+  }
   showFeature(featureIndex)
 }())

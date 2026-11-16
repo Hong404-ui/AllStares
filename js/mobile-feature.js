@@ -10,7 +10,7 @@
 
   function schedule() {
     clearTimeout(timer)
-    if (slides.length < 2 || document.hidden || !document.getElementById('video-overlay').hidden || !document.getElementById('overlay').hidden || gallery.matches(':hover') || gallery.contains(document.activeElement) || dots.contains(document.activeElement)) return
+    if (!gallery.classList.contains('is-ready') || slides.length < 2 || document.hidden || !document.getElementById('video-overlay').hidden || !document.getElementById('overlay').hidden || gallery.matches(':hover') || gallery.contains(document.activeElement) || dots.contains(document.activeElement)) return
     timer = setTimeout(function () { show(index + 1) }, 4000)
   }
 
@@ -34,8 +34,8 @@
   }
 
   function setSlides(items) {
-    var valid = items.filter(function (item) { return item && typeof item.src === 'string' && item.src })
-    if (!valid.length) return
+    var valid = (Array.isArray(items) ? items : []).filter(function (item) { return item && typeof item.src === 'string' && item.src })
+    if (!valid.length) { window.setFeatureSlidesStatus('暂无特色内容'); return }
     gallery.replaceChildren()
     dots.replaceChildren()
     valid.forEach(function (item, position) {
@@ -70,6 +70,10 @@
     })
     slides = Array.prototype.slice.call(gallery.querySelectorAll('.feature-slide'))
     show(Math.min(1, slides.length - 1))
+    gallery.classList.add('is-ready')
+    gallery.closest('.features').classList.add('has-feature-data')
+    gallery.dataset.statusText = ''
+    schedule()
   }
 
   document.querySelector('.feature-arrow-left').addEventListener('click', function (event) { event.preventDefault(); show(index - 1) })
@@ -107,5 +111,11 @@
   document.addEventListener('visibilitychange', schedule)
   document.addEventListener('allstar:modal-change', schedule)
   window.setFeatureSlides = setSlides
+  window.setFeatureSlidesStatus = function (message) {
+    clearTimeout(timer)
+    gallery.classList.remove('is-ready')
+    gallery.closest('.features').classList.remove('has-feature-data')
+    gallery.dataset.statusText = message
+  }
   show(index)
 }())

@@ -34,9 +34,9 @@
 
   ;[
     ['.play-hit', '.hero .play'],
-    ['.download-qr-hit', '.download-options img:nth-child(1)'],
-    ['.download-android-hit', '.download-options img:nth-child(2)'],
-    ['.download-pc-hit', '.download-options img:nth-child(3)'],
+    ['.download-qr-hit', '.download-option-qr'],
+    ['.download-android-hit', '.download-option-android'],
+    ['.download-pc-hit', '.download-option-pc'],
     ['.claim-hit', '.claim'],
     ['.news-more-hit', '.news-more'],
     ['.effect-hit', '.effect'],
@@ -52,8 +52,8 @@
   document.querySelectorAll('.social-actions a').forEach(function (link, index) {
     bindVisualPress(link, document.querySelector('.social-list li:nth-child(' + (index + 1) + ') img'))
   })
-  document.querySelectorAll('.news-tab-actions a').forEach(function (link, index) {
-    bindVisualPress(link, document.querySelector('.news-tabs img:nth-child(' + (index + 1) + ')'))
+  document.querySelectorAll('.news-tab-actions a').forEach(function (link) {
+    bindVisualPress(link, link)
   })
   document.querySelectorAll('.news-list .row-hit').forEach(function (link) {
     bindVisualPress(link, link.parentElement)

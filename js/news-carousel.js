@@ -8,7 +8,10 @@
 
   var isPc = document.documentElement.dataset.platform === 'pc'
   var overlays = [document.getElementById('overlay'), document.getElementById('video-overlay')].filter(Boolean)
-  var template = track.querySelector('img').cloneNode(false)
+  var template = document.createElement('img')
+  template.width = isPc ? 706 : 598
+  template.height = isPc ? 411 : 348
+  var status = document.querySelector('.news-carousel-status')
   var slides = []
   var index = 0
   var position = 1
@@ -19,18 +22,18 @@
   function positionTrack(distance) { track.style.transform = 'translate3d(' + (-position * width() + (distance || 0)) + 'px,0,0)' }
 
   function updateControls() {
+    var current = slides[index]
+    if (!current) return
     pagination.querySelectorAll('a').forEach(function (link, pageIndex) {
       var active = pageIndex === index
       link.classList.toggle('is-active', active)
       if (active) link.setAttribute('aria-current', 'true')
       else link.removeAttribute('aria-current')
     })
-    var bar = pagination.querySelector('.news-active-bar')
-    if (bar) bar.style.left = (2.35 + (4 - slides.length) * .3 + index * .6) + 'rem'
     var caption = document.querySelector('.news-caption')
-    if (caption) caption.textContent = slides[index].caption || ''
+    if (caption) caption.textContent = current.caption || ''
     track.querySelectorAll('img').forEach(function (image, imageIndex) {
-      image.alt = imageIndex === position ? slides[index].alt : ''
+      image.alt = imageIndex === position ? current.alt : ''
       image.setAttribute('aria-hidden', imageIndex === position ? 'false' : 'true')
     })
     carousel.setAttribute('aria-label', '游戏资讯海报轮播，第' + (index + 1) + '张，共' + slides.length + '张')
@@ -43,7 +46,7 @@
   }
 
   function show(next) {
-    if (!slides.length) return
+    if (!slides.length || !Number.isFinite(next)) return
     index = (next % slides.length + slides.length) % slides.length
     position = next === slides.length ? slides.length + 1 : next === -1 ? 0 : index + 1
     track.classList.remove('is-dragging')
@@ -53,8 +56,21 @@
   }
 
   function setSlides(items) {
-    slides = items.filter(function (item) { return item && typeof item.src === 'string' && item.src })
-    if (!slides.length) return
+    var nextSlides = Array.isArray(items) ? items.filter(function (item) { return item && typeof item.src === 'string' && item.src }) : []
+    clearTimeout(timer)
+    if (!nextSlides.length) {
+      slides = []
+      track.replaceChildren()
+      pagination.querySelectorAll('a').forEach(function (link) { link.remove() })
+      carousel.classList.remove('is-ready')
+      carousel.parentElement.classList.remove('is-ready')
+      carousel.setAttribute('aria-busy', 'false')
+      if (status) { status.textContent = '暂无海报'; status.hidden = false }
+      var caption = document.querySelector('.news-caption')
+      if (caption) caption.textContent = ''
+      return
+    }
+    slides = nextSlides
     track.replaceChildren()
     ;[slides[slides.length - 1]].concat(slides, [slides[0]]).forEach(function (slide) {
       var image = template.cloneNode(false)
@@ -81,6 +97,10 @@
     track.classList.add('is-dragging')
     positionTrack()
     updateControls()
+    carousel.classList.add('is-ready')
+    carousel.parentElement.classList.add('is-ready')
+    carousel.setAttribute('aria-busy', 'false')
+    if (status) status.hidden = true
     requestAnimationFrame(function () { track.classList.remove('is-dragging') })
     schedule()
   }
@@ -100,6 +120,7 @@
     requestAnimationFrame(function () { requestAnimationFrame(function () { track.classList.remove('is-dragging') }) })
   })
   carousel.addEventListener('pointerdown', function (event) {
+    if (!slides.length) return
     if (event.pointerType === 'mouse' && event.button !== 0) return
     clearTimeout(timer)
     pointerStart = { x: event.clientX, y: event.clientY }
@@ -131,5 +152,16 @@
   document.addEventListener('allstar:modal-change', schedule)
   window.addEventListener('resize', function () { track.style.width = (slides.length + 2) * width() + 'px'; positionTrack() })
   window.setNewsSlides = setSlides
+  window.setNewsSlidesStatus = function (state) {
+    if (state === 'loading') {
+      carousel.classList.remove('is-ready')
+      carousel.parentElement.classList.remove('is-ready')
+      carousel.setAttribute('aria-busy', 'true')
+    }
+    if (status) {
+      status.textContent = state === 'error' ? '海报加载失败，请稍后重试' : state === 'empty' ? '暂无海报' : '海报加载中…'
+      status.hidden = false
+    }
+  }
   window.allstarScheduleNews = schedule
 }())

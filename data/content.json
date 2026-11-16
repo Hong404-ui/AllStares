@@ -6,24 +6,12 @@
     { "label": "成长经验卡×5" }
   ],
   "news": {
-    "caption": "群星集结，开启你的格斗新篇章",
-    "slides": [
-      { "mobileImage": "ossweb-img/news-poster.png", "pcImage": "ossweb-img/pc/news-poster.png", "alt": "格斗家集结", "caption": "群星集结，开启你的格斗新篇章" },
-      { "mobileImage": "ossweb-img/news-poster.png", "pcImage": "ossweb-img/pc/news-poster.png", "alt": "格斗家集结", "caption": "群星集结，开启你的格斗新篇章" },
-      { "mobileImage": "ossweb-img/news-poster.png", "pcImage": "ossweb-img/pc/news-poster.png", "alt": "格斗家集结", "caption": "群星集结，开启你的格斗新篇章" },
-      { "mobileImage": "ossweb-img/news-poster.png", "pcImage": "ossweb-img/pc/news-poster.png", "alt": "格斗家集结", "caption": "群星集结，开启你的格斗新篇章" }
-    ],
-    "items": [
-      { "categoryCode": "news", "category": "新闻", "tag": "【全新篇章】", "title": "群星集结，觉醒之战即将开启", "date": "2026/11/13" },
-      { "categoryCode": "notice", "category": "公告", "tag": "【更新公告】", "title": "版本内容与维护安排说明", "date": "2026/11/12" },
-      { "categoryCode": "event", "category": "活动", "tag": "【登录有礼】", "title": "每日签到领取成长补给", "date": "2026/11/11" },
-      { "categoryCode": "guide", "category": "攻略", "tag": "【新手指南】", "title": "从阵容搭配到连招释放，踏上格斗之路", "date": "2026/11/10" },
-      { "categoryCode": "news", "category": "新闻", "tag": "【角色档案】", "title": "剑影之间，寻找心中的答案", "date": "2026/11/09" }
-    ]
+    "categories": { "latest": "最新", "news": "新闻", "notice": "公告", "event": "活动", "guide": "攻略" }
   },
   "character": {
     "name": "橘右京",
     "englishName": "Ukyo Tachibana",
+    "school": "神梦想一刀流",
     "description": "命不久矣的剑术天才，性格内敛，沉默而孤傲。自知时日无多，却从没为执剑的理由而迷惘，紧握自己的命运决定战至最后一刻。",
     "facts": {
       "birth": { "label": "生日：", "value": "9月20日" },
@@ -41,6 +29,7 @@
     { "name": "角色三", "available": false, "pendingText": "角色三资料待开放" },
     { "name": "角色四", "available": false, "pendingText": "角色四资料待开放" }
   ],
+  "ui": { "coming": "敬请期待" },
   "featureSlides": [
     { "mobileImage": "ossweb-img/feature-left.png", "pcImage": "ossweb-img/pc/feature-left.png", "alt": "街机手感，重燃记忆" },
     { "mobileImage": "ossweb-img/feature-main.png", "pcImage": "ossweb-img/pc/feature-main.png", "alt": "宿命之战再启，全明星登场" },

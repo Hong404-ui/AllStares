@@ -44,6 +44,8 @@
       return data
     }).catch(function (error) {
       console.warn('Content API failed', error)
+      if (window.setFeatureSlidesStatus) window.setFeatureSlidesStatus('特色内容加载失败')
+      document.dispatchEvent(new Event('allstar:content-error'))
       if (window.allstarShowMessage) window.allstarShowMessage('内容加载失败，请稍后重试')
       throw error
     })

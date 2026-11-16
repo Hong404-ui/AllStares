@@ -41,7 +41,15 @@
     }
     if (link.dataset.action === 'news-item') {
       var item = window.getVisibleNewsItem && window.getVisibleNewsItem(Number(link.dataset.newsIndex))
-      if (!item || !item.url) { event.preventDefault(); window.allstarShowMessage('资讯详情页待接入') }
+      if (!item || !item.url) {
+        event.preventDefault()
+        if (item && item.id && window.loadIdeNewsDetail) {
+          window.loadIdeNewsDetail(item).catch(function (error) {
+            console.warn('资讯详情接口加载失败', error)
+            window.allstarShowMessage('资讯详情加载失败，请稍后重试')
+          })
+        } else window.allstarShowMessage('资讯详情暂不可用')
+      }
     }
     if (link.dataset.action === 'more-news' && link.getAttribute('href') === '#') { event.preventDefault(); window.allstarShowMessage('更多资讯页面待接入') }
   })

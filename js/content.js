@@ -2,7 +2,8 @@
   'use strict'
 
   var content = {}
-  var selectedCategory = 'latest'
+  var remoteNewsItems = []
+  var newsStatus = 'loading'
   var categoryNames = { latest: '最新', news: '新闻', notice: '公告', event: '活动', guide: '攻略' }
 
   function read(path, source) {
@@ -27,10 +28,7 @@
   }
 
   function visibleNews() {
-    var items = Array.isArray(content.news && content.news.items) ? content.news.items : []
-    return selectedCategory === 'latest' ? items : items.filter(function (item) {
-      return item.categoryCode === selectedCategory || item.category === categoryNames[selectedCategory]
-    })
+    return remoteNewsItems
   }
 
   function renderNews() {
@@ -50,11 +48,15 @@
       }
     })
     var empty = document.querySelector('.news-empty')
-    if (empty) empty.hidden = items.length > 0
+    if (empty) {
+      empty.textContent = newsStatus === 'loading' ? '资讯加载中…' : newsStatus === 'error' ? '资讯加载失败，请稍后重试' : '暂无相关资讯'
+      empty.hidden = items.length > 0
+    }
   }
 
   window.setNewsCategory = function (category) {
-    selectedCategory = categoryNames[category] ? category : 'latest'
+    remoteNewsItems = []
+    newsStatus = 'loading'
     renderNews()
     var moreLink = document.querySelector('.news-more-hit, .news-more[href]')
     if (moreLink && content.news && content.news.moreUrl) {
@@ -64,17 +66,26 @@
   }
 
   window.getVisibleNewsItem = function (index) { return visibleNews()[index] }
+  window.setRemoteNewsItems = function (items) {
+    remoteNewsItems = Array.isArray(items) ? items : []
+    newsStatus = Array.isArray(items) ? 'ready' : 'error'
+    renderNews()
+  }
 
   window.renderGameContent = function (data) {
     content = data && typeof data === 'object' ? data : {}
+    content.news = content.news || {}
+    content.news.categories = Object.assign({}, categoryNames, content.news.categories)
+    content.character = content.character || {}
+    content.ui = content.ui || {}
     document.querySelectorAll('[data-content]').forEach(function (element) {
-      if (element.dataset.content.indexOf('news.items.') === 0) return
+      if (element.dataset.content.indexOf('news.items.') === 0 || element.dataset.content === 'news.caption') return
       renderText(element, read(element.dataset.content, content))
     })
     renderNews()
-    if (Array.isArray(content.news && content.news.slides) && window.setNewsSlides) window.setNewsSlides(content.news.slides)
     if (Array.isArray(content.featureSlides) && window.setFeatureSlides) window.setFeatureSlides(content.featureSlides)
     if (Array.isArray(content.characters) && window.setCharacters) window.setCharacters(content.characters)
+    window.allstarContentLoaded = true
     document.dispatchEvent(new CustomEvent('allstar:content-loaded', { detail: { content: content } }))
   }
 }())
