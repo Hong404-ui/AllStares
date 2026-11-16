@@ -10,7 +10,7 @@
   <!-- 页面设计：项目设计稿 | 页面制作：前端还原 | 创建：2026-11-05 -->
   <script>
     if (!/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && new URLSearchParams(location.search).get('preview') !== 'mobile' && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      location.replace('pc/index.html' + location.search + location.hash)
+      location.replace('index_pc.html' + location.search + location.hash)
     }
   </script>
   <link rel="stylesheet" href="css/index.css">
@@ -24,7 +24,7 @@
     <header class="site-header part" id="home">
       <img class="hero" src="ossweb-img/hero.png" width="750" height="1326" alt="全明星觉醒人物主视觉">
       <div class="topbar">
-        <a class="logo-link" href="#home" aria-label="返回首页" data-track="nav_logo_home" data-track-type="btn" data-track-label="点击Logo返回首页"><img class="logo" src="ossweb-img/logo.png" width="143" height="77" alt="全明星觉醒"></a>
+        <a class="logo-link" href="index_pc.html?preview=pc" aria-label="切换到PC端" data-platform-switch="pc" data-track="nav_logo_switch_pc" data-track-type="link" data-track-label="点击Logo切换到PC端"><img class="logo" src="ossweb-img/logo.png" width="143" height="77" alt="全明星觉醒"></a>
         <span class="welcome">欢迎您，请</span>
         <a class="login-trigger" href="#login" aria-label="登录" aria-haspopup="dialog" data-track="login_open" data-track-type="btn" data-track-label="打开登录弹窗"><span class="login">登录</span><img class="login-underline" src="ossweb-img/login-underline.png" width="44" height="1" alt=""></a>
         <a class="menu-trigger" href="#site-nav" aria-label="打开导航菜单" aria-controls="site-nav" aria-expanded="false" data-track="nav_menu_toggle" data-track-type="btn" data-track-label="切换导航菜单"><img class="menu" src="ossweb-img/menu.png" width="44" height="35" alt=""></a>
@@ -41,8 +41,8 @@
       <img class="subtitle" src="ossweb-img/subtitle.png" width="490" height="35" alt="SNK正版授权，街机大招策略卡牌手游">
       <a class="play-trigger" href="#video-dialog" aria-label="播放宣传视频" aria-haspopup="dialog" data-video-id="m3093w4tk4a" data-track="video_play" data-track-type="btn" data-track-label="播放宣传视频"><img class="play" src="ossweb-img/play.png" width="52" height="51" alt=""></a>
       <a class="hero-down" href="#gift" aria-label="查看下载福利" data-track="nav_scroll_gift" data-track-type="btn" data-track-label="向下查看下载福利"><img src="ossweb-img/down-arrow.png" width="40" height="43" alt=""></a>
-      <a class="ios download-link message-link" href="#site-message" aria-label="iOS 下载" data-message="iOS 下载地址待提供" data-track="download_ios" data-track-type="download" data-track-label="iOS下载"><span class="download-icon" aria-hidden="true"></span><span>iOS 下载</span></a>
-      <a class="android download-link message-link" href="#site-message" aria-label="安卓下载" data-message="安卓下载地址待提供" data-track="download_android" data-track-type="download" data-track-label="安卓下载"><span class="download-icon" aria-hidden="true"></span><span>安卓下载</span></a>
+      <a class="ios download-link message-link" href="#site-message" aria-label="iOS 下载" data-message="iOS 下载地址待提供" data-track="download_ios" data-track-type="download" data-track-label="iOS下载"><img src="ossweb-img/ios.png" width="424" height="75" alt=""></a>
+      <a class="android download-link message-link" href="#site-message" aria-label="安卓下载" data-message="安卓下载地址待提供" data-track="download_android" data-track-type="download" data-track-label="安卓下载"><img src="ossweb-img/android.png" width="424" height="75" alt=""></a>
       <img class="hero-copyright" src="ossweb-img/copyright.png" width="373" height="13" alt="©SNK CORPORATION ALL RIGHTS RESERVED.">
     </header>
 
@@ -188,6 +188,7 @@
   <script src="https://vm.gtimg.cn/thumbplayer/superplayer/superplayer.js"></script>
   <script src="js/content.js"></script>
   <script src="js/common.js"></script>
+  <script src="js/platform-switch.js"></script>
   <script src="js/index.js"></script>
   <script src="js/mobile-video.js"></script>
   <script src="js/mobile-news.js"></script>
@@ -195,6 +196,7 @@
   <script src="js/mobile-feature.js"></script>
   <script src="js/character-picker.js"></script>
   <script src="js/community.js"></script>
+  <script src="js/content-data.js"></script>
   <script src="js/content-api.js"></script>
   <script src="js/ide-news.js"></script>
   <script src="//game.gtimg.cn/images/js/2018foot/foot.js"></script>

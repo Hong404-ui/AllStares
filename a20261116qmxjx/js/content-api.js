@@ -2,8 +2,8 @@
   'use strict'
 
   var isPc = document.documentElement.dataset.platform === 'pc'
-  var projectRoot = new URL(isPc ? '../' : './', document.baseURI)
-  var endpoint = window.ALLSTAR_CONTENT_API_URL || new URL('data/content.json', projectRoot).href
+  var projectRoot = new URL('./', document.baseURI)
+  var endpoint = window.ALLSTAR_CONTENT_API_URL
 
   function imageUrl(value) {
     if (typeof value !== 'string' || !value.trim()) return ''
@@ -29,10 +29,14 @@
   }
 
   window.loadGameContent = function (url) {
-    return fetch(url || endpoint, { credentials: 'same-origin' }).then(function (response) {
-      if (!response.ok) throw new Error('内容接口返回 ' + response.status)
-      return response.json()
-    }).then(function (payload) {
+    var source = url || endpoint
+    var request = source
+      ? fetch(source, { credentials: 'same-origin' }).then(function (response) {
+        if (!response.ok) throw new Error('内容接口返回 ' + response.status)
+        return response.json()
+      })
+      : Promise.resolve(window.ALLSTAR_LOCAL_CONTENT)
+    return request.then(function (payload) {
       var data = payload && payload.data && !payload.news ? payload.data : payload
       if (!data || typeof data !== 'object') throw new Error('内容接口数据格式错误')
       data.news = data.news || {}

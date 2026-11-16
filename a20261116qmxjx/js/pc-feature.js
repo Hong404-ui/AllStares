@@ -8,9 +8,9 @@
   var actions = document.querySelector('.feature-dot-actions')
   var overlay = document.getElementById('overlay')
   var slides = [
-    { src: '../ossweb-img/pc/feature-left.png', alt: '街机手感，重燃记忆' },
-    { src: '../ossweb-img/pc/feature-main.png', alt: '宿命之战再启，全明星登场' },
-    { src: '../ossweb-img/pc/feature-right.png', alt: '最初热爱，不知火舞参上' }
+    { src: 'ossweb-img/pc/feature-left.png', alt: '街机手感，重燃记忆' },
+    { src: 'ossweb-img/pc/feature-main.png', alt: '宿命之战再启，全明星登场' },
+    { src: 'ossweb-img/pc/feature-right.png', alt: '最初热爱，不知火舞参上' }
   ]
   var featureIndex = 1
   var timer
@@ -45,7 +45,7 @@
       else link.removeAttribute('aria-current')
     })
     Array.prototype.forEach.call(dots.querySelectorAll('img'), function (dot, dotIndex) {
-      dot.src = '../ossweb-img/pc/feature-dot' + (dotIndex === featureIndex ? '-active' : '') + '.png'
+      dot.src = 'ossweb-img/pc/feature-dot' + (dotIndex === featureIndex ? '-active' : '') + '.png'
       dot.classList.toggle('is-active', dotIndex === featureIndex)
     })
     gallery.setAttribute('aria-label', '游戏特色轮播，第' + (featureIndex + 1) + '张，共' + slides.length + '张')
@@ -65,7 +65,7 @@
     actions.replaceChildren()
     slides.forEach(function (slide, index) {
       var dot = document.createElement('img')
-      dot.src = '../ossweb-img/pc/feature-dot.png'
+      dot.src = 'ossweb-img/pc/feature-dot.png'
       dot.width = 26
       dot.height = 23
       dot.alt = ''

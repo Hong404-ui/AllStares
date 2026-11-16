@@ -127,7 +127,7 @@
       tag: String(field(row, ['e_subtitle', 'tag', 'sTag'])) || '【' + category + '】',
       title: title,
       date: formatDate(published),
-      url: safeUrl(field(row, ['e_url', 'url', 'sUrl', 'link'])),
+      url: safeUrl(field(row, ['jump_url', 'e_url', 'url', 'sUrl', 'link'])),
       raw: row
     }
   }
@@ -175,17 +175,23 @@
     return request('detail', { documentId: item.id }).then(function (response) {
       var detail = result(response)
       if (Array.isArray(detail)) detail = detail[0]
-      var url = safeUrl(field(detail, ['e_url', 'url', 'sUrl', 'link']))
+      if (!detail || typeof detail !== 'object' || !field(detail, ['documentId', 'id', 'title', 'e_title'])) {
+        throw new Error('详情接口未返回资讯记录')
+      }
+      var url = safeUrl(field(detail, ['jump_url', 'e_url', 'url', 'sUrl', 'link']) || detail && detail.jump_obj && detail.jump_obj.url)
       if (url) { location.href = url; return }
       var title = field(detail, ['e_title', 'title', 'sTitle']) || item.title
-      var body = field(detail, ['e_content', 'content', 'sContent', 'body'])
-      if (!body) throw new Error('详情接口未返回正文或链接')
+      var body = field(detail, ['e_content', 'content', 'self_content', 'sContent', 'body', 'content_summary'])
+      var images = detail && Array.isArray(detail.images) ? detail.images : []
+      var cover = images.find(function (image) { return image.field === 'cover1' }) || images[0]
+      var coverField = field(detail, ['header_image', 'cover'])
+      var coverUrl = safeUrl(typeof coverField === 'string' ? coverField : coverField && coverField.url) || safeUrl(cover && cover.url)
       var dialog = document.getElementById('ide-news-detail')
       if (!dialog) {
         dialog = document.createElement('div')
         dialog.id = 'ide-news-detail'
         dialog.className = 'ide-news-detail'
-        dialog.innerHTML = '<div class="ide-news-detail-panel" role="dialog" aria-modal="true" aria-labelledby="ide-news-detail-title"><button type="button" class="ide-news-detail-close" aria-label="关闭资讯详情" data-track="news_detail_close">×</button><h2 id="ide-news-detail-title"></h2><div class="ide-news-detail-body"></div></div>'
+        dialog.innerHTML = '<div class="ide-news-detail-panel" role="dialog" aria-modal="true" aria-labelledby="ide-news-detail-title"><button type="button" class="ide-news-detail-close" aria-label="关闭资讯详情" data-track="news_detail_close">×</button><h2 id="ide-news-detail-title"></h2><time class="ide-news-detail-date"></time><img class="ide-news-detail-cover" alt="" hidden><div class="ide-news-detail-body"></div></div>'
         document.body.appendChild(dialog)
         dialog.addEventListener('click', function (event) {
           if (event.target === dialog || event.target.closest('.ide-news-detail-close')) {
@@ -195,7 +201,26 @@
         })
       }
       dialog.querySelector('h2').textContent = String(title)
-      dialog.querySelector('.ide-news-detail-body').textContent = String(body).replace(/<[^>]*>/g, ' ')
+      var date = formatDate(field(detail, ['e_published_at', 'published_at', 'publishedAt', 'date']) || item.date)
+      var dateElement = dialog.querySelector('.ide-news-detail-date')
+      dateElement.textContent = date
+      dateElement.hidden = !date
+      var coverElement = dialog.querySelector('.ide-news-detail-cover')
+      coverElement.hidden = !coverUrl
+      if (coverUrl) {
+        coverElement.src = coverUrl
+        if (cover && Number(cover.width) > 0 && Number(cover.height) > 0) {
+          coverElement.width = Number(cover.width)
+          coverElement.height = Number(cover.height)
+        }
+      } else coverElement.removeAttribute('src')
+      var text = typeof body === 'string' ? body : ''
+      if (text) {
+        text = text.replace(/<\s*br\s*\/?\s*>/gi, '\n').replace(/<\s*\/p\s*>/gi, '\n').replace(/<[^>]*>/g, '')
+          .replace(/&nbsp;|&#160;/gi, ' ').replace(/&amp;/gi, '&').replace(/&lt;/gi, '<').replace(/&gt;/gi, '>')
+          .replace(/&quot;/gi, '"').replace(/&#39;|&apos;/gi, "'")
+      }
+      dialog.querySelector('.ide-news-detail-body').textContent = text.trim() || '该资讯暂未提供正文，请稍后查看。'
       dialog.hidden = false
       dialog.querySelector('button').focus()
     })

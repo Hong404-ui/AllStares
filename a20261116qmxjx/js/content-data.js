@@ -1,4 +1,4 @@
-{
+window.ALLSTAR_LOCAL_CONTENT = {
   "giftItems": [
     { "label": "觉醒招募券×1" },
     { "label": "格斗补给箱×2" },
@@ -36,3 +36,4 @@
     { "mobileImage": "ossweb-img/feature-right.png", "pcImage": "ossweb-img/pc/feature-right.png", "alt": "最初热爱，格斗家集结" }
   ]
 }
+

@@ -31,7 +31,11 @@
       else link.removeAttribute('aria-current')
     })
     var caption = document.querySelector('.news-caption')
-    if (caption) caption.textContent = current.caption || ''
+    if (caption) {
+      caption.textContent = current.caption || ''
+      caption.title = current.caption || ''
+      carousel.parentElement.classList.toggle('has-caption', Boolean(current.caption))
+    }
     track.querySelectorAll('img').forEach(function (image, imageIndex) {
       image.alt = imageIndex === position ? current.alt : ''
       image.setAttribute('aria-hidden', imageIndex === position ? 'false' : 'true')
@@ -67,7 +71,8 @@
       carousel.setAttribute('aria-busy', 'false')
       if (status) { status.textContent = '暂无海报'; status.hidden = false }
       var caption = document.querySelector('.news-caption')
-      if (caption) caption.textContent = ''
+      if (caption) { caption.textContent = ''; caption.title = '' }
+      carousel.parentElement.classList.remove('has-caption')
       return
     }
     slides = nextSlides
